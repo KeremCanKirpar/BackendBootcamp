@@ -21,10 +21,13 @@ class Program
     // int newMyValue = (int)myValue; // Cast etmek ya da Unboxing
     // System.Console.WriteLine("Double: " + myValue + "\n" + "int: " + newMyValue);
 
-    string numberString = "125";
-    int result = Convert.ToInt32(numberString) + 58;
-    System.Console.WriteLine(result);
+    // string numberString = "125";
+    // int result = Convert.ToInt32(numberString) + 58;
+    // System.Console.WriteLine(result);
 
+    long numberLong = 75;
+    long numberInt = Convert.ToInt32(numberLong);
+    System.Console.WriteLine(numberInt);
 
     #endregion
 
