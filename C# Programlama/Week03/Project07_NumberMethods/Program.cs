@@ -16,7 +16,7 @@ class Program
         result = a/b;
         result = a%b;
 
-        result = Math.Abs(-10); // mutlak değer
+        result = Math.Abs(-10); // mutlak değer+
         result = (int)Math.Pow(4,5); // karesini alma 
        double result2;
        result2 = Math.Sqrt(16); // karekökünü alma

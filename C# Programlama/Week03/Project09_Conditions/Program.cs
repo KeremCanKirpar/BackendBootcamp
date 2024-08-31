@@ -166,48 +166,40 @@ class Program
 
 
         //Girilen Tarihin Hangi mevsime Denk geldiğini bulup ekrana yazdıran kodu bulup switch yapısı kullanarak hazırlayınız.
-        System.Console.WriteLine("Bir Tarih Giriniz:");
-        string inputDate = Console.ReadLine();
+        // System.Console.WriteLine("Bir Tarih Giriniz:");
+        // string inputDate = Console.ReadLine();
 
-        if (DateTime.TryParse(inputDate, out DateTime date))
-        {
-            switch (date.Month)
-            {
-                case 9:
-                case 10:
-                case 11:
-                    System.Console.WriteLine("Sonbahar");
-                    break;
-                case 12:
-                case 1:
-                case 2:
-                    System.Console.WriteLine("Kış");
-                    break;
-                case 3:
-                case 4:
-                case 5:
-                    System.Console.WriteLine("İlkBahar");
-                    break;
-                default:
-                    System.Console.WriteLine("Yaz");
-                    break;
+        // if (DateTime.TryParse(inputDate, out DateTime date))
+        // {
+        //     switch (date.Month)
+        //     {
+        //         case 9:
+        //         case 10:
+        //         case 11:
+        //             System.Console.WriteLine("Sonbahar");
+        //             break;
+        //         case 12:
+        //         case 1:
+        //         case 2:
+        //             System.Console.WriteLine("Kış");
+        //             break;
+        //         case 3:
+        //         case 4:
+        //         case 5:
+        //             System.Console.WriteLine("İlkBahar");
+        //             break;
+        //         default:
+        //             System.Console.WriteLine("Yaz");
+        //             break;
 
-            }
+        //     }
 
-        }
-        else
-        {
-            System.Console.WriteLine("Yanlış Tarih Formatı!");
-        }
+        // }
+        // else
+        // {
+        //     System.Console.WriteLine("Yanlış Tarih Formatı!");
+        // }
         #endregion
 
-
-
-
-
     }
-
-
-
-
 }
