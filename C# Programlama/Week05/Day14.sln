@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project14_Arrays", "Project14_Arrays\Project14_Arrays.csproj", "{6FA0D092-F392-4042-819C-7A2726E390F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project15_CreateAndAssingTeams", "Project15_CreateAndAssingTeams\Project15_CreateAndAssingTeams.csproj", "{5DF5CBE6-9224-482E-8FA2-611DD9D07369}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FA0D092-F392-4042-819C-7A2726E390F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA0D092-F392-4042-819C-7A2726E390F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA0D092-F392-4042-819C-7A2726E390F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA0D092-F392-4042-819C-7A2726E390F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF5CBE6-9224-482E-8FA2-611DD9D07369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF5CBE6-9224-482E-8FA2-611DD9D07369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF5CBE6-9224-482E-8FA2-611DD9D07369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF5CBE6-9224-482E-8FA2-611DD9D07369}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
