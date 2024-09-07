@@ -55,17 +55,18 @@ class Program
             students[randomIndex] = temp;
        }
 
-           
+           int teamCounter = 0;
             string currentTeamName;
         for (int i = 0; i < students.Length; i+=4)
         {
-            currentTeamName = teamNames[0];
+            currentTeamName = teamNames[teamCounter];
             Console.WriteLine($"Takım Adı: {currentTeamName} ");
             for(int j = 0; j < memberCount; j++)
             {
                 Console.WriteLine($"\t\t-{students[i+j]}");
             }
             Console.WriteLine();
+            teamCounter++;
         }
 
 
