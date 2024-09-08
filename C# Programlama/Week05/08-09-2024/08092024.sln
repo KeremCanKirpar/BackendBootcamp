@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project16_Methods", "Project16_Methods\Project16_Methods.csproj", "{03818042-484C-487E-BC86-144167D31921}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project17_MethodOverloading", "Project17_MethodOverloading\Project17_MethodOverloading.csproj", "{9C1609F9-46CB-4BB2-9C9F-21AB441F7C04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{03818042-484C-487E-BC86-144167D31921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03818042-484C-487E-BC86-144167D31921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03818042-484C-487E-BC86-144167D31921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1609F9-46CB-4BB2-9C9F-21AB441F7C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1609F9-46CB-4BB2-9C9F-21AB441F7C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1609F9-46CB-4BB2-9C9F-21AB441F7C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1609F9-46CB-4BB2-9C9F-21AB441F7C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
