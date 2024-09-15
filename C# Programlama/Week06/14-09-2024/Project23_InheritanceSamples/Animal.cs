@@ -13,7 +13,7 @@ public class Animal
     public string Name  { get; set; }
     public int Age { get; set; }
 
-    public void MakeSound()
+    public virtual void MakeSound() //virtual : methoda yazılırsa istenilirse geçerli / geçersiz kılınabildiğini göstermek için kullanılır
     {
         Console.WriteLine($"{Name} ses çıkardı");
     }

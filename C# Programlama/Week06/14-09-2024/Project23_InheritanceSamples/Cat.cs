@@ -10,8 +10,8 @@ public class Cat : Animal
     }
     public string Color { get; set; }
 
-    public void Miyavla()
+    public override void MakeSound()
     {
-        Console.WriteLine($"{Name} Miyavladı");
+        Console.WriteLine($"{Name} Miyavladı!");
     }
 }
