@@ -3,7 +3,7 @@ using System;
 namespace Project24_Interface.Interfaces;
 
 public class ProductRepo : IRepo
-{cto
+{
     public void Create()
     {
         throw new NotImplementedException();
