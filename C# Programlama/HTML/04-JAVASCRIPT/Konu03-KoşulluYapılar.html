@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koşullu Yapılar</title>
+</head>
+
+<body>
+    <script>
+        let number = 0;
+        // if (number > 0) {
+        //     console.log("Sayı Pozitif");
+        // } else if (number == 0) {
+        //     console.log("Sayı 0");
+        // }
+        // else {
+        //     console.log("Sayı Negatif");
+        // }
+
+        // console.log(number>0 ? "Sayı Pozitiftir" : "Sayı Negatiftir");
+        // console.log(number > 0 ? 'Sayı Pozitiftir' : number==0 ? 'Sayı Sıfırdır' : 'Sayı Negatiftir');
+        // let value =1;
+        // switch(value){
+        //     case 1 : number
+        //     console.log("Bir");
+        //     break;
+        //     case 2 : number
+        //     console.log("İki");
+        //     break;
+        //     case 3 : number
+        //     console.log("Üç");
+        //     break;
+        //     default :
+        //     console.log("Hata");
+        //     break;
+        // }
+
+        //0-10: Şansına Küs
+        // 11-20 : ooo iyisin
+        //21-30 : Bana bir piyango bileti al!
+
+        let value= 30;
+        let color = 'Sarı';
+        switch(true)
+        {
+            case value<=10:
+                console.log("Şansına Küs");
+                break;
+            case value<=20:
+                console.log("OO İyisin");
+                break;
+            case color == "Mavi":
+                console.log("Mavilim");
+                break;
+            default:
+                console.log("Bana Bir Piyango Bileti Al!");
+                break;
+
+        }
+    </script>
+</body>
+
+</html>

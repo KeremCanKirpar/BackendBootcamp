@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Web Sitesi</title>
+    <style>
+        * {
+            margin: 0px;
+            /*Dış boşluk*/
+            padding: 0px;
+            /*İç Boşluk*/
+        }
+
+        body {
+            background-color: bisque;
+            font-family: 'Courier New';
+            color: #555;
+            font-size: 18px;
+        }
+
+        #header {
+            text-align: center;
+            padding: 20px 40px;
+            background-color: #555;
+            color: #fff;
+
+
+
+
+
+            /* padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 40px;
+            padding-right: 40px; */
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+
+        h2 {
+            font-size: 36px;
+        }
+
+        #about,
+        #skills,
+        #links,
+        #profiles,
+        #contact {
+            background-color: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #skillsContainer {
+            list-style-type: none;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        #links a {
+            text-decoration: none;
+            color: #0075ee;
+            font-weight: bold;
+
+        }
+
+        #links a:hover {
+            color: #022d5b;
+
+        }
+
+        #profiles img {
+            border-radius: 100px;
+        }
+
+        #contact form input,
+        #contact form textarea {
+            padding: 5px;
+            margin-top: 5px;
+            border: 1 px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #contact form input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color .3s;
+            /* transition:  all .3s; eğer birden fazla özellik vericeksek süreyi vereceksek bu şekilde yazabiliriz */
+
+        }
+
+        #contact form input[type="submit"]:hover {
+            background-color: #555;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+        body {
+            
+        }
+        div{
+            color: red;
+        }
+        #header
+        {
+            background-color: yellow;
+        }
+        .skill
+        {
+            color: blue;
+        }
+            */
+    </style>
+</head>
+
+<body>
+
+    <!-- Başlık Bölümü-->
+    <div id="header">
+        <h1>Merhaba ben Kerem Can Kırpar</h1>
+        <p> Yazılım Geliştirici | Teknoloji Aşığı | Spor Tutkunu</p>
+    </div>
+    <!-- Kişisel bilgier Bölümü -->
+    <div id="about">
+        <h2>Hakkımda</h2>
+        <p>
+            Merhaba! Ben Kerem Can Kırpar. 5 yıldır yazılım geliştirici olarak çalışıyorum. Çeşitli şirketlerde farklı
+            projelerde rol aldıktan sonra. şu günlerde bireysel proje geliştiriyorum aynı zamanda spoar ve teknolojiye
+            de meraklıyım!
+        </p>
+    </div>
+
+    <!-- Yetenekler bölümü -->
+    <div id="skills">
+        <h2>Yetenekler</h2>
+        <!-- ul>li*6 -->
+        <ul id="skillsContainer">
+            <li class="skill">HTML</li>
+            <li class="skill">CSS</li>
+            <li class="skill">JavaScript</li>
+            <li class="skill">React</li>
+            <li class="skill">AspNetCore MVC</li>
+            <li class="skill">AspNetCore API</li>
+        </ul>
+    </div>
+
+    <!--- Bağlantılar --->
+    <div id="links">
+        <h2>Benimle Bağlantı Kurun!</h2>
+        <div>
+            <a href="https://www.github.com" target="_blank">GitHub</a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com" target="_blank">Linkedin </a>
+        </div>
+    </div>
+
+    <!--- Görsel Bölümü --->
+    <div id="profiles">
+        <h2>Profil Fotoğrafı</h2>
+        <!-- <img src="https://placehold.co/200"> -->
+        <img src="https://picsum.photos/id/43/200/200" alt="">
+    </div>
+
+
+    <!-- İletişim Bölümü -->
+    <div id="contact">
+        <h2>Benimle İletişime Geçin!</h2>
+        <form action="">
+            <div>
+                <label for="">Ad Soyad: </label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="">E-mail:</label>
+                <input type="email" name="" id="">
+            </div>
+            <div>
+                <label for="">Mesaj:</label>
+                <textarea></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Mesaj Gönder">
+            </div>
+
+        </form>
+    </div>
+
+
+</body>
+
+</html>
