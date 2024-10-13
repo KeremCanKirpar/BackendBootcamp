@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olaylar</title>
+</head>
+
+<body>
+    <h1>Events</h1>
+    <div>
+        <button onclick="changeColor('red','white')">Kırmızı/Beyaz</button>
+    </div>
+    <div>
+        <button onclick="changeColor('black','yellow')">Siyah/Sarı</button>
+    </div>
+    <div>
+        <button onclick="changeColor('darkblue','yellow')">Lacivert/Sarı</button>
+    </div>
+    <div>
+        <button onclick="changeColor('purple','white')">Mor/Beyaz</button>
+    </div>
+    <br><br>
+    <form name="gender" action="">
+        <input type="radio" name="genderRadio" checked> Kadın
+        <input type="radio" name="genderRadio" checked> Erkek
+        <div>
+            <input type="button" value="Seçim yap" onclick="showStatus()">
+        </div>
+    </form>
+
+    <form action="">
+        <div>
+            <label for="">Ad: </label>
+            <input type="text" onfocus="this.placeholder = 'Adınızı Giriniz...'" onblur="this.placeholder=''">
+        </div>
+        <div>
+            <label for="">Soyad: </label>
+            <input type="text" onfocus="this.placeholder = 'Soyadınızı Giriniz...'" onblur="this.placeholder=''">
+        </div>
+    </form>
+    <form action="">
+        <select onchange="go(this)">
+            <option value="#">Bir arama motoru seçiniz!</option>
+            <option value="https://www.google.com">Google</option>
+            <option value="https://www.yandex.com.tr">Yandex</option>
+            <option value="https://www.bing.com">Bing</option>
+            <option value="https://www.yahoo.com">Yahoo</option>
+        </select>
+    </form>
+    <div id="content">
+        <h1 id="title-about">About</h1>
+        <p id="about" style="display: none;">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam voluptas, dolorum modi delectus
+            architecto, iure recusandae suscipit, expedita facilis fuga eum aspernatur inventore ipsum dolorem nisi ex
+            deleniti commodi itaque.
+        </p>
+    </div>
+
+    <script>
+        const about = document.getElementById('about');
+        console.log(about);
+        about.addEventListener('click',function(){
+            alert('Tıklandı');
+        });
+
+
+        document.getElementById('title-about').addEventListener('clikc', function(){
+           if(about.style.display=='none')
+           {
+            about.style.display = 'block';
+           }
+           else
+           {
+             about.style.display = 'none';
+           }
+        });
+        console.log(about);
+        function changeColor(bg, fg) {
+            document.bgColor = bg;
+            document.fgColor = fg;
+        }
+        function showStatus() {
+            let message = '';
+            if (document.gender.genderRadio[0].checked) {
+                message = 'Cinsiyet: Kadın';
+            }
+            else {
+                message = 'Cinsiyet: Erkek';
+            }
+            console.log(message);
+        }
+        function go(element) {
+            const selectedOption = element.selectedIndex;
+            const address = console.log(element.options[selectedOption]);
+            // window.open(adress);
+            if (confirm('Sitemizden Ayrılıyorsunuz! Emin misiniz?')) {
+                location.href=address;    
+            }
+        }
+    </script>
+</body>
+
+</html>

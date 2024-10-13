@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title
+        {
+            color: red;
+            font-size: 50px;
+        }
+        .color-1
+        {
+            color: cadetblue;
+        }
+        .color-2
+        {
+            color: #685968;
+        }
+        .borders{
+            border: 5px solid green;
+        }
+    </style>
+</head>
+<body style="background-color: black; color: white;">
+    <img src="https://picsum.photos/id/30/300/200" alt="">
+    <h3 id="title1">jQuery ile Css</h3>
+    <div id="color" class="color-1">
+        Lorem ipsum dolor sit amet.
+    </div>
+    <hr>
+    <button id="change1">Değiştir</button>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+         $(document).ready(function(){
+        //$('#color').css('font-size','40px');
+        //     $('#color').css('padding','15px');
+        //     $('#color').css('background-color','#555');
+            
+        //     // document.getElementById('color').style.fontSize='50px';
+
+        $('#change1').click(function(){
+            // $('#color').removeClass('color-1');
+            // $('#color').addClass('color-2');
+            document.getElementById('color').classList.remove('color-1');
+            document.getElementById('color').classList.add('color-2','borders');
+        })
+        });
+    </script>
+</body>
+</html>

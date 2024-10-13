@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diziler</title>
+</head>
+<body>
+    
+
+    <script>
+        // let dizi = [];
+        // dizi[0] = 'Selam';
+        // dizi[1] = 4500;
+        // dizi[2] = true;
+
+        // console.log(dizi);
+
+        let numbers = [5,45,67,234,33];
+        let total = 0;
+        for (let i = 0; i < numbers.length; i++) {
+            total += numbers[i];
+        }
+        total=0;
+        for(let number of numbers)
+        {
+            total+= number;
+        }
+        total=0;
+        numbers.forEach(number =>{
+            total += number;
+        });
+        numbers.forEach(function(number){
+            total+=number;
+        })
+        console.log(numbers);
+        console.log(total);
+    </script>
+</body>
+</html>

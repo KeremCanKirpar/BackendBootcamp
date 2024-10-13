@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+</head>
+
+<body>
+
+
+    <script>
+        let text1 = "AcunMedya Akademi";
+        let text2 = 'Merhaba Dünya';
+        let text3 = `Backtick`;
+        let text4 = 'Pucca';
+        let text6 = text1 + ' ' + text2;
+        // let text7 =`
+        //     ${text1} ${text2}
+        // `;
+        console.log(text1.length);
+        console.log(text2.charAt(1));
+        console.log(text1.toLowerCase());
+        console.log(text1.toLocaleUpperCase());
+        console.log(text1.slice(4, 10));
+        console.log(text1.replace(' ', '/'));
+        let title = '10.Dönem Backend Temel Eğitim';
+        console.log(title);
+        console.log(title.split(' '));
+        // title içindeki boşlukların tamamını - ile değiştirin ve aşağıda ki gibi bi sonuç üretin.
+
+        let titleSplit = title.split(' ');
+        title = "";
+        for (let i = 0; i < titleSplit.length; i++) {
+
+            if (i != titleSplit.length - 1) {
+                title +=titleSplit[i] + '-';
+            }else
+            {
+                titleSplit += titleSplit[i];
+            }
+        }
+        console.log(titleSplit);
+        // let newTitle = titleSplit.join('-');
+        // console.log(newTitle);
+    </script>
+</body>
+
+</html>

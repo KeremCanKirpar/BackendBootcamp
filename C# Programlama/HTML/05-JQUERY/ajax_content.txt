@@ -1,0 +1,9 @@
+    <h1>AJAX</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit dolore est temporibus ducimus nulla debitis cum excepturi unde natus tempore impedit iusto consectetur beatae facilis, ipsam optio nihil harum commodi suscipit ad. Vero, quae quis.</p>
+
+    <ul>
+        <li>Prop1</li>
+        <li>Prop2</li>
+        <li>Prop3</li>
+        <li>Prop4</li>
+    </ul>
