@@ -1,0 +1,170 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+
+}
+
+body {
+  background-color: bisque;
+  font-family: 'Courier New';
+  color: #555;
+  font-size: 18px;
+}
+
+#header {
+  text-align: center;
+  padding: 20px 40px;
+  background-color: #555;
+  color: #fff;
+
+
+
+
+
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 36px;
+
+}
+
+#about,
+#skills,
+#links,
+#profiles,
+#contact {
+  background-color: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.skill {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-color: #555;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  padding: 13px 0;
+  width: 130px;
+  margin-left: 10px;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+  transition: all .3s;
+}
+
+.skill:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, .6);
+  transform: translate(2px, -2px);
+}
+
+#skills {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#skillsContainer {
+  display: flex;
+
+}
+
+#links a {
+  text-decoration: none;
+  color: #0075ee;
+  font-weight: bold;
+
+
+}
+
+#links a:hover {
+  color: #022d5b;
+
+}
+
+#profiles img {
+  border-radius: 100px;
+}
+
+#contact form input,
+#contact form textarea {
+  padding: 5px;
+  margin-top: 5px;
+  border: 1 px solid #ccc;
+  border-radius: 3px;
+}
+
+#contact form input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color .3s;
+
+
+}
+
+#contact form input[type="submit"]:hover {
+  background-color: #555;
+
+}
+
+@media (max-width:850px) {
+  h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width:670px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 12px
+  }
+
+  #links a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width:1170px) {
+  .skill {
+    font-size: 12px;
+    width: 80px;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width:785px) {
+  #skills {
+    flex-direction: column;
+  }
+
+  #skills h2 {
+    margin-bottom: 10px;
+  }
+
+}
+
+@media (max-width:655px) {
+  #skillsContainer {
+    flex-direction: column;
+  }
+
+  .skill {
+    width: 100px;
+  }
+}
