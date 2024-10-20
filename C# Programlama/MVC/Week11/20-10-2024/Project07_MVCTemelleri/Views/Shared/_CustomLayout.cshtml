@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>@ViewData["Title"] - Custom Layout ile oluşturulmuştur</title>
+     <link rel="stylesheet" href="~/css/customstyle.css">
+</head>
+<body>
+    <div class="header">
+        <ul class="menu">
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#">Ürünler</a></li>
+            <li><a href="#">Kategoriler</a></li>
+            <li><a href="#">Üye Ol</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <p class="footer-text">
+            Bu layout Backend10 Temel Eğitimi Sınıfı Öğrencileri tarafından hazırlanmıştır.
+        </p>
+    </div>
+</body>
+</html>

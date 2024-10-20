@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>HTML Helpers</h1>
+<hr>
+<a href="/home/index0">Ana Sayfa</a>
+@Html.ActionLink("Ana Sayfa", "Index", "Home")
+@Html.ActionLink("Razor Syntax", "Index", "MVC01RazorSyntax")
+<br>
+@Html.CheckBox("onay") Onaylıyorum
+<br>
+@Html.TextBox("firstName")<br>
+@Html.TextArea("address")<br>
+@Html.Label("baslik")<br>
+<hr>
+<h1>TAG Helpers</h1>
+<a asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+<hr>
+@{
+    var categories = new List<SelectListItem>()
+    {
+        new SelectListItem{Text="telefon"},
+        new SelectListItem{Text="Bilgisayar"},
+        new SelectListItem{Text="Kitap"}
+    };
+}
+@Html.DropDownList("categoryList1",categories);
+<br>
+<select asp-items="categories"></select>

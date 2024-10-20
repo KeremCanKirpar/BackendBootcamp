@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project05_MVCTemelleri", "Project05_MVCTemelleri.csproj", "{232946D8-6A8F-4BDC-BEB9-D4FFE84E5F94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project07_MVCTemelleri", "Project07_MVCTemelleri\Project07_MVCTemelleri.csproj", "{72F42750-6F46-4EA1-91F6-DC6913DD0FC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{232946D8-6A8F-4BDC-BEB9-D4FFE84E5F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{232946D8-6A8F-4BDC-BEB9-D4FFE84E5F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{232946D8-6A8F-4BDC-BEB9-D4FFE84E5F94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F42750-6F46-4EA1-91F6-DC6913DD0FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F42750-6F46-4EA1-91F6-DC6913DD0FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F42750-6F46-4EA1-91F6-DC6913DD0FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F42750-6F46-4EA1-91F6-DC6913DD0FC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
