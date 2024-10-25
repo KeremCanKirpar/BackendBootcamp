@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style=" justify-content: center;  display: flex;  padding: 5px; font-size: 35px;">KATEGORİLER SAYFASI</h1>
+
+<div class="list-group" style="text-align: center;">
+   
+    @foreach(var category in ViewBag.CategoryList)
+    {
+         <a href="#" class="list-group-item list-group-item-action list-group-item-info" style="background-color: #777; color: whitesmoke;">@category.Kategory</a>
+    } 
+</div>

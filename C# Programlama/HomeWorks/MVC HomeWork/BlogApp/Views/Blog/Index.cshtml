@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Index";
+}
+<h1
+    style=" justify-content: center;  display: flex;   padding: 5px; font-size: 35px;">
+    YAZILAR SAYFASI</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var blog in (List<BlogModel>)ViewData["BlogModelList"])
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="@blog.Resim" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@blog.Baslik</h5>
+                        <p class="card-text">@blog.Aciklama</p>
+                        <p class="card-text"><small class="text-body-secondary">@DateTime.Now</small></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

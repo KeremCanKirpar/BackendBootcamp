@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Index";
+
+}
+<h1
+    style=" justify-content: center;  display: flex; padding: 5px; font-size: 35px ">
+    İLETİŞİM
+    SAYFASI</h1>
+@foreach (var contact in ViewBag.ContactList)
+{
+
+
+    <form asp-action="Submit" method="post" class="row g-3"
+        style="background-color: #777; margin-top: 15px; padding: 10px;">
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Ad Soyad</label>
+            <input  class="form-control" id="@contact.AdSoyad" placeholder="Ad ve Soyadınızı giriniz">
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Email</label>
+            <input type="email" class="form-control" id="@contact.Email" placeholder="Emailnizi giriniz">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Konu</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Konuyu yazınız">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress2" class="form-label">Mesaj</label>
+
+            <textarea class="form-control" id="inputAddress2" rows="4" placeholder="Mesajınızı buraya yazın"></textarea>
+        </div>
+
+        <div class="col-12" style="display: flex; justify-content: center;">
+            <button type="submit" class="btn btn-success" style="width: 500px;">Gönder</button>
+        </div>
+        <div class="col-12" style="display: flex; justify-content: center;">
+            <button type="submit" class="btn btn-danger" style="width: 500px;">Sil</button>
+        </div>
+    </form>
+}
