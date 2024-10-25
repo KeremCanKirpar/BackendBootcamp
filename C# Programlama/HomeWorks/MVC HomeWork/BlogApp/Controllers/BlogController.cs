@@ -14,35 +14,35 @@ namespace BlogApp.Controllers
 
                 new BlogModel
                 {
-                    Id=1, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="123", Resim="https://picsum.photos/id/237/200/300"
+                    Id=1, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="123", Resim="https://picsum.photos/id/213/200/300"
                 },
                 new BlogModel
                 {
-                    Id=2, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="03", Resim="https://picsum.photos/id/238/200/300"
+                    Id=2, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="03", Resim="https://picsum.photos/id/343/200/300"
                 },
                 new BlogModel
                 {
-                    Id=3, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="12", Resim="https://picsum.photos/id/239/200/300"
+                    Id=3, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="12", Resim="https://picsum.photos/id/653/200/300"
                 },
                 new BlogModel
                 {
-                    Id=4, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik=" 67 ", Resim="https://picsum.photos/id/247/200/300"
+                    Id=4, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik=" 67 ", Resim="https://picsum.photos/id/324/200/300"
                 },
                 new BlogModel
                 {
-                    Id=5, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="31", Resim="https://picsum.photos/id/257/200/300"
+                    Id=5, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="31", Resim="https://picsum.photos/id/123/200/300"
                 },
                 new BlogModel
                 {
-                    Id=6, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="22", Resim="https://picsum.photos/id/267/200/300"
+                    Id=6, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="22", Resim="https://picsum.photos/id/12/200/300"
                 },
                 new BlogModel
                 {
-                    Id=7, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="2İ", Resim="https://picsum.photos/id/277/200/300"
+                    Id=7, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="2İ", Resim="https://picsum.photos/id/345/200/300"
                 },
                 new BlogModel
                 {
-                    Id=8, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="4", Resim="https://picsum.photos/id/287/200/300"
+                    Id=8, Aciklama="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.", Baslik="4", Resim="https://picsum.photos/id/234/200/300"
                 },
                 new BlogModel
                 {

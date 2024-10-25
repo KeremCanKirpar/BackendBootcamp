@@ -10,4 +10,6 @@ public class AboutModel
     public string? StajYer { get; set; }
     public string? Resim { get; set; }
 
+    public List<Staj>? Staj { get; set; }
+    public List<LinkModel>? Links {get; set;}
 }

@@ -1,3 +1,4 @@
+@model AboutModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,31 +8,37 @@
     HAKKIMDA</h1>
 <div class="container">
     <div class="row justify-content-center ">
-        @foreach (var abouts in ViewBag.AboutList)
-        {
+       
             <div class="col-md-4">
                 <div class="card mb-4" style="width: 32rem;"> 
-                    <img src="@abouts.Resim" class="card-img-top" alt="...">
+                    <img src="@Model.Resim" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">@abouts.AdSoyad</h5>
+                        <h5 class="card-title">@Model.AdSoyad</h5>
                         <p class="card-text"></p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">@abouts.Aciklama</li>
+                        <li class="list-group-item">@Model.Aciklama</li>
                     </ul>
                    
                     <ul class="list-group list-group-flush">
                         
-                        <li class="list-group-item">@abouts.StajYer</li>
-                        <li class="list-group-item">Google A.Ş</li>
-                        <li class="list-group-item">Apple A.Ş</li>
+                        @foreach(var item in Model.Staj)
+                        {
+                        <li class="list-group-item">@item.StajName</li>
+                        }
+                       
+                        
                     </ul>
                     <div class="card-body">
-                        <a href="@abouts.Link" class="card-link">Github</a>
-                        <a href="" class="card-link">linkedin</a>
+                        @foreach(var item in Model.Links)
+                        {
+                        <a href="@item.LinkUrl" class="card-link">@item.LinkName</a>
+                        }
+                      
+                       
                     </div>
                 </div>
             </div>
-        }
+    
     </div>
 </div>
