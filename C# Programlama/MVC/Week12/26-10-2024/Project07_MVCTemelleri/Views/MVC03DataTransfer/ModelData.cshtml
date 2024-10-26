@@ -1,0 +1,11 @@
+@model List<Category>
+@* "Model" adındaki değişkenin içinde verimiz bulunmaktadır*@
+@{
+    ViewData["Title"] = "ModelData";
+    List<Category> categoryList = Model;
+}
+<h1>Model Bazlı </h1>
+@foreach(var category in categoryList)
+{
+    <div>@category.Name</div>
+}
