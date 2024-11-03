@@ -1,0 +1,37 @@
+@model IEnumerable<Project>?
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Projelerim</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Proje</th>
+                        <th scope="col">Kategori</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">İşlemler</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                        <tr>
+                            <th scope="row">@p.Id</th>
+                            <td>@p.Name</td>
+                            <td>@p.CategoryId</td>
+                            <td><button type="button" class="btn btn-outline-primary m-2">Detaylar</button></td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

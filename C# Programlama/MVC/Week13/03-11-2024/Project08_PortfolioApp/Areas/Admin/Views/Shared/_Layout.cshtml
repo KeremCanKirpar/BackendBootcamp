@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Portfolio App Admin Panel</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    @await Html.PartialAsync("_StylesPartial")
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+
+        @await Html.PartialAsync("_SpinnerPartial")
+
+        @await Html.PartialAsync("_SidebarPartial")
+
+
+        <div class="content">
+
+            @await Html.PartialAsync("_NavbarPartial")
+            @RenderBody()
+
+
+
+            @await Html.PartialAsync("_FooterPartial")
+        </div>
+
+
+        @await Html.PartialAsync("_BackToTopPartial")
+    </div>
+
+    @await Html.PartialAsync("_ScriptsPartial")
+</body>
+
+</html>
