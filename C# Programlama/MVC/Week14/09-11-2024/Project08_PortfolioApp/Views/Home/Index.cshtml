@@ -1,6 +1,6 @@
 ﻿@model HomePageModel
 @{
-    ViewData["Title"] = "Kerem Can Kırpar";
+    ViewData["Title"] = "Kemal Kodyazar";
 }
 
 
@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row gy-4">
             <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-                <h1>@Model.AppSetting.BrandName</h1>
+                <h1>@Model.AppSetting.HeroTitle</h1>
                 <p>@Model.AppSetting.HeroSubTitle</p>
             </div>
             <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
@@ -168,7 +168,7 @@
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
         <h2>İletişim</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Benimle iletişime geçmek için aşağıdaki formu kullanabilirsiniz.</p>
     </div><!-- End Section Title -->
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -181,24 +181,25 @@
                     <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
                         <div>
-                            <h3>Address</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <h3>Adres: </h3>
+                            <p>@Model.AppSetting.AddressText </p>
+                            <p>@Model.AppSetting.AddressDistrict / @Model.AppSetting.AddressCity</p>
                         </div>
                     </div><!-- End Info Item -->
 
                     <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                         <i class="bi bi-telephone flex-shrink-0"></i>
                         <div>
-                            <h3>Call Us</h3>
-                            <p>+1 5589 55488 55</p>
+                            <h3>Telefon:</h3>
+                            <p>@Model.AppSetting.PhoneNumber</p>
                         </div>
                     </div><!-- End Info Item -->
 
                     <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                         <i class="bi bi-envelope flex-shrink-0"></i>
                         <div>
-                            <h3>Email Us</h3>
-                            <p>info@example.com</p>
+                            <h3>Email:</h3>
+                            <p>@Model.AppSetting.Email</p>
                         </div>
                     </div><!-- End Info Item -->
 

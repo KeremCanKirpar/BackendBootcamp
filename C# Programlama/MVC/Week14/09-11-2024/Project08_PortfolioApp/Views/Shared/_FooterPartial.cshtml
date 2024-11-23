@@ -3,14 +3,14 @@
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="d-flex align-items-center">
+                    <a href="/" class="d-flex align-items-center">
                         <span class="sitename">@Model.AppSetting.BrandName</span>
                     </a>
                     <div class="footer-contact pt-3">
                         <p>@Model.AppSetting.AddressText</p>
-                    @*<p>@Model.AppSetting.AddressDisctrict</p>*@
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p>@Model.AppSetting.AddressDistrict / @Model.AppSetting.AddressCity</p>
+                        <p class="mt-3"><strong>Telefon:</strong> <span>@Model.AppSetting.PhoneNumber</span></p>
+                        <p><strong>Email:</strong> <span>@Model.AppSetting.Email</span></p>
                     </div>
                 </div>
 
@@ -35,13 +35,12 @@
                 </div>
 
                 <div class="col-lg-4 col-md-12">
-                    <h4>Beni Takip Et</h4>
-                    <p>Beni Takip edebileceğiniz sosyal medya hesaplarıma aşağıdaki linklerden ulaşabilirsiniz</p>
+                    <h4>Beni Takip Et!</h4>
+                    <p>Beni takip edebileceğiniz sosyal medya hesaplarıma aşağıdaki linklerden ulaşabilirsiniz.</p>
                     <div class="social-links d-flex">
-                    @foreach (var social in Model.Socials)
-                    {
-                        <a title="@social." href="@social.Url"><i class="bi bi-@social.Icon"></i></a>
-                    }
+                        @foreach(var social in Model.Socials){
+                            <a title="@social.Name" href="@social.Url"><i class="bi bi-@social.Icon"></i></a>
+                        }
                     </div>
                 </div>
 

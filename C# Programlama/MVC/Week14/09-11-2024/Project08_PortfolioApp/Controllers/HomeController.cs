@@ -11,7 +11,7 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         //Bağlantıyı hazırlıyoruz
-        var connectionString = "Server=localhost,1441;Database=PortfolioDb;User=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true";
+        var connectionString = "Server=localhost,1433;Database=PortfolioDb;User=sa;Password=Qwe123.,;TrustServerCertificate=true";
         var connection = new SqlConnection(connectionString);
 
         //Site ayarlarını çekiyoruz
