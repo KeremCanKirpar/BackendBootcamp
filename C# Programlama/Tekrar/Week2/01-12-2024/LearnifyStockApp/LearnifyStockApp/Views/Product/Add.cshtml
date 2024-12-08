@@ -1,0 +1,87 @@
+@model AddProductViewModel
+@{
+    ViewData["Title"] = "Yeni Ürün";
+}
+
+<form asp-area="" asp-controller="Product" asp-action="Add" method="post">
+
+
+    <div class="page-header d-flex justify-content-between">
+        <h3 class="display-6 text-primary">Yeni Ürün Ekranı</h3>
+        <div class="card-action">
+            <button class="btn btn-success">Kaydet</button>
+            <a asp-area="" asp-controller="Product" asp-action="Index" class="btn btn-danger">Vazgeç</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label asp-for=Name></label>
+                        <input asp-for=Name class="form-control form-control-lg" />
+                        <span asp-validation-for=Name class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for=Description></label>
+                        <input asp-for=Description class="form-control form-control-lg" />
+                        <span asp-validation-for=Description class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for=StockQuantity></label>
+                                <input asp-for=StockQuantity class="form-control form-control-lg" />
+                                <span asp-validation-for=StockQuantity class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for=MinimumStockLevel></label>
+                                <input asp-for=MinimumStockLevel class="form-control form-control-lg" />
+                                <span asp-validation-for=MinimumStockLevel class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for=Price></label>
+                                <input asp-for=Price class="form-control form-control-lg" />
+                                <span asp-validation-for=Price class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label asp-for="CategoryList"></label>
+                        <select asp-for=CategoryId asp-items="@Model.CategoryList" class="form-select form-control-lg">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SupplierList"></label>
+                        <select asp-for=SupplierId asp-items="@Model.SupplierList" class="form-select form-control-lg">
+                        </select>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Kaydet</button>
+                        <a asp-area="" asp-controller="Product" asp-action="Index" class="btn btn-danger">Vazgeç</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</form>

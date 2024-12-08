@@ -1,0 +1,46 @@
+@model AddCategoryViewModel
+@{
+    ViewData["Title"] = "Yeni Kategori";
+}
+
+<form asp-area="" asp-controller="Category" asp-action="Add" method="post">
+
+
+    <div class="page-header d-flex justify-content-between">
+        <h3 class="display-6 text-primary">Yeni Kategori Ekranı</h3>
+        <div class="card-action">
+            <button class="btn btn-success">Kaydet</button>
+            <a asp-area="" asp-controller="Category" asp-action="Index" class="btn btn-danger">Vazgeç</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label asp-for=Name></label>
+                        <input asp-for=Name class="form-control form-control-lg" />
+                        <span asp-validation-for=Name class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for=Description></label>
+                        <input asp-for=Description class="form-control form-control-lg" />
+                        <span asp-validation-for=Description class="text-danger"></span>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="card-action">
+                <button class="btn btn-success">Kaydet</button>
+                <a asp-area="" asp-controller="Category" asp-action="Index" class="btn btn-danger">Vazgeç</a>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+

@@ -40,7 +40,7 @@ public class HomeController : Controller
 
         HomePageModel model = new()
         {
-            AppSetting = appSetting,
+           AppSetting = appSetting,
             Categories = categories,
             Projects = projects,
             Services = services,
