@@ -1,0 +1,19 @@
+@model CategoryCreateDto
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Kategoriler</h1>
+<form asp-controller="Category" asp-action="Create">
+    <div class="form-group">
+        <label class="form-label">Kategori Adı</label>
+        <input asp-for="Name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Kategori Açıklaması</label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <div class="form-group mt-3">
+        <button class="btn btn-primary" type="submit">Kaydet</button>
+    </div>
+</form>
