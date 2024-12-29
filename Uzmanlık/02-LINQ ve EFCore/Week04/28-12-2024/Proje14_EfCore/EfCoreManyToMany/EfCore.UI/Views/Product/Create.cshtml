@@ -1,0 +1,38 @@
+@model ProductCreateDto
+@{
+    ViewData["Title"] = "Create";
+}
+<h1>Yeni Ürün</h1>
+<hr>
+<form asp-controller="Product" asp-action="Create" method="post">
+    <div class="form-group">
+        <label class="form-label">Ürün</label>
+        <input asp-for=Name class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="form-label">Fiyat</label>
+        <input asp-for=Price class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="form-label">Özellikler</label>
+        <input asp-for=Properties class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="form-label">Kategoriler</label>
+        @foreach (var category in Model.CategoryList)
+        {
+            <div>
+                <input type="checkbox" name="CategoryIds" value="@category.Id" @(Model.CategoryIds.Any(x => x == category.Id) ?
+                "checked" : "") />
+                <label>@category.Name</label>
+            </div>
+        }
+    </div>
+
+
+
+
+    <div class="form-group mt-3">
+        <button class="btn btn-primary" type="submit">Kaydet</button>
+    </div>
+</form>

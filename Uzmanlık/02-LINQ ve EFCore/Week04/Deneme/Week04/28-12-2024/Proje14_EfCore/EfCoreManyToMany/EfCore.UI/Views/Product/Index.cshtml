@@ -1,0 +1,35 @@
+@model IEnumerable<ProductDto>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Ürünler</h1>
+<a class="btn btn-primary mt-3" asp-controller="Product" asp-action="Create">Yeni Ürün</a>
+<hr>
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Ürün</th>
+            <th>Fiyat</th>
+            <th>İşlemler</th>
+        </tr>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@($"{product.Price:C0}")</td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Product" asp-action="Update"
+                        asp-route-id="@product.Id">Düzenle</a>
+                    <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">Veritabanında herhangi bir ürün bulunamamıştır.</div>
+}

@@ -1,0 +1,26 @@
+@model IEnumerable<CategoryDto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Kategoriler</h1>
+<a asp-controller="Category" asp-action="Create" class="btn btn-primary">Yeni Kategori</a>
+<hr>
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Kategori</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td>@category.Id</td>
+            <td>@category.Name</td>
+            <td>
+                <a class="btn btn-warning">Düzelt</a>
+                <a class="btn btn-danger">Sil</a>
+            </td>
+        </tr>
+    }
+</table>

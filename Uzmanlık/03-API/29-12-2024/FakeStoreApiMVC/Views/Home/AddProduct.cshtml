@@ -1,0 +1,86 @@
+@model Product
+@{
+    ViewData["Title"] = "AddProduct";
+}
+<h1>Ürün Ekle</h1>
+<div class="container">
+    <form id="addProductForm" method="post">
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input class="form-control" asp-for=Title/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input class="form-control" asp-for=Description/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input class="form-control" asp-for=Price />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-control" asp-for=Category>
+                @foreach(var category in ViewBag.Categories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+    <hr>
+    <h2>Eklenen Ürünler (Sayfa Yenilenince Kaybolur</h2>
+    <table class="table table-bordered" id="productsTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Price</th>
+                <td>Category</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Buraya O sırada Eklenen Ürünler javascript kodu ile eklenecek -->
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts{
+    <script>
+        $('#addProductForm').submit(function (event){
+            event.preventDefault();
+
+            let formData ={
+                Title:$('#Title').val(),
+                Description: $('#Description').val(),
+                Price:$('#Price').val(),
+                Category:$('#Category').val()
+            };
+
+            $.ajax({
+                type:'POST',
+                url:'@Url.Action("AddProduct","Home")',
+                data:formData,
+                success: function(addedProduct){
+                    let newRow =`
+                    <tr>
+                        <td>${addedProduct.id}</td>
+                        <td>${addedProduct.title}</td>
+                        <td>${addedProduct.price}</td>
+                         <td>${addedProduct.category}</td>
+                    </tr>
+                    
+                    `;
+                    $('#productsTable tbody').append(newRow);
+                    $('#addProductForm').reset();
+                },
+                error: function (){
+                    alert("Ürün Eklenirken Hata Oluştu");
+                }
+            }); 
+
+        });
+        
+    </script>
+}
