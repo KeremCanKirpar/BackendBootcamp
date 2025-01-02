@@ -1,0 +1,17 @@
+@model List<string>
+
+
+    <div class="container mt-5">
+        <h1>Kategoriler</h1>
+        <ul class="list-group">
+            @foreach (var category in Model)
+            {
+                <li class="list-group-item">
+                    <a href="@Url.Action("ProductsByCategory", "Home", new { category = category })" class="text-decoration-none">
+                        @category
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+

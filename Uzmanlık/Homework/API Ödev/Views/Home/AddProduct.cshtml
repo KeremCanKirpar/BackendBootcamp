@@ -1,0 +1,43 @@
+@model Product
+@{
+    ViewData["Title"] = "AddProduct";
+}
+
+<h1>Ürün Ekleyin</h1>
+
+<div class="container">
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input class="form-control" asp-for="Title"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input class="form-control" asp-for="Description" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input class="form-control" asp-for="Price"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-control" asp-for="Category">
+            @foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category">@category</option>
+            }
+            </select>
+        </div>
+        <button id="onClick" type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>
+
+
+@section script
+{
+    <script>
+        document.getElementById("onClick").addEventListener("click",$ function(event){
+            alert("Ürün Eklendi");
+        });
+    </script>
+}

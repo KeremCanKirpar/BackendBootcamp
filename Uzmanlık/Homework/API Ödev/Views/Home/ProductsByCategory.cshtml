@@ -1,0 +1,27 @@
+@model List<Product>
+
+<h2>Ürünler</h2>
+<div class="container">
+    <div class="row">
+
+        @foreach (var product in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <a href="@Url.Action("Details","Home",new {id=product.Id})">
+                    <img src="@product.Image" class="card-img-top" style="height: 200px; object-fit: cover;" />
+                </a>
+                <div class="card">
+                    <h5 class="card-title"><b>@product.Title</b></h5>
+                    <p class="card-text">
+                        @product.Description.Substring(0, Math.Min(100, product.Description.Length))
+                    </p>
+                    <p class="card-text">
+                        @($"{product.Price:C2}")
+                    </p>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
