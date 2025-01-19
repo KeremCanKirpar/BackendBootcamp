@@ -1,4 +1,4 @@
-using EShop.Service.Abstract;
+using EShop.Services.Abstract;
 using EShop.Shared.Dtos.Auth;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,17 +28,15 @@ namespace EShop.API.Controllers
             var result = await _authService.LoginAsync(loginDto);
             return StatusCode(result.StatusCode, result);
         }
-    
-        
+
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto registerDto)
         {
             var result = await _authService.RegisterAsync(registerDto);
             return StatusCode(result.StatusCode, result);
-
         }
 
 
-        
     }
 }
