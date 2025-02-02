@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "eb082c20-5a07-472f-81fc-df66f2221591",
+		"name": "EShop API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29898144"
+	},
+	"item": [
+		{
+			"name": "Auth Test",
+			"item": [
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"testuser\",\r\n    \"password\": \"Qwe123.,\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5210/api/auths/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5210",
+							"path": [
+								"api",
+								"auths",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"adminuser@gmail.com\",\r\n    \"password\": \"Qwe123.,\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5210/api/auths/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5210",
+							"path": [
+								"api",
+								"auths",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Engin\",\r\n  \"lastName\": \"Niyazi\",\r\n  \"address\": \"Kadıköy\",\r\n  \"city\": \"İstanbul\",\r\n  \"gender\": 1,\r\n  \"dateOfBirth\": \"2025-01-12T11:56:44.598Z\",\r\n  \"email\": \"testuser@example.com\",\r\n  \"userName\": \"testuser\",\r\n  \"password\": \"Qwe123.,\",\r\n  \"confirmPassword\": \"Qwe123.,\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5210/api/auths/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5210",
+							"path": [
+								"api",
+								"auths",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories Test",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ0NzU3Mzc1LWE0OTctNDk2Yi04NWRjLWE1MTAwMjdiZDliMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbnVzZXJAZ21haWwuY29tIiwianRpIjoiYTM0OTFjYWItODNjNi00N2FiLTgwMWEtYTQzNzFkODBiMmUxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3Mzk4NjM0ODQsImlzcyI6IkVTaG9wQmFja2VuZCIsImF1ZCI6IkVTaG9wRnJvbnRlbmQifQ.AaBhF0qcqvAjkVd9G5C57Vpkji-Uez6X24Q6nyZQJWw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5210/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5210",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetActives",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5210/api/categories/actives",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5210",
+							"path": [
+								"api",
+								"categories",
+								"actives"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPassives",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImI1ODJlZjAwLTgzNWEtNGNhMC04ZGVmLWY3N2IyY2NhZjY3MCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJ0ZXN0dXNlciIsImp0aSI6IjdhZDE3ODU4LWEwYTUtNGMxNC1iYjNkLTA4NDdiNzgwZDVkOCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJleHAiOjE3Mzk3OTAzNjEsImlzcyI6IkVTaG9wQmFja2VuZCIsImF1ZCI6IkVTaG9wRnJvbnRlbmQifQ.KnlZ_oygKCie9diGylBTRqyqME5rzIpO1kHyy9-nALs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5210/api/categories/passives",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5210",
+							"path": [
+								"api",
+								"categories",
+								"passives"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5210/api/categories/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5210",
+							"path": [
+								"api",
+								"categories",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ0NzU3Mzc1LWE0OTctNDk2Yi04NWRjLWE1MTAwMjdiZDliMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbnVzZXJAZ21haWwuY29tIiwianRpIjoiNTgxZDYzNzMtNmE0My00NTRiLTg2ZmMtOTJlYjVmZTkzMjQxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3Mzk3OTM2NzAsImlzcyI6IkVTaG9wQmFja2VuZCIsImF1ZCI6IkVTaG9wRnJvbnRlbmQifQ.6WPMqwA0cweeGfzwUJORRCh12LOz-qSlGUQdBujmSy8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Name",
+									"value": "Klima",
+									"type": "text"
+								},
+								{
+									"key": "Description",
+									"value": "Güzel klima",
+									"type": "text"
+								},
+								{
+									"key": "Image",
+									"type": "file",
+									"src": "/C:/Users/enginniyazi/Documents/GitHub/10-BE-TEMEL-YY/05-MVC/Week14/09-11-2024/Project08_PortfolioApp/wwwroot/ui/img/services.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5210/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5210",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ0NzU3Mzc1LWE0OTctNDk2Yi04NWRjLWE1MTAwMjdiZDliMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbnVzZXJAZ21haWwuY29tIiwianRpIjoiYTM0OTFjYWItODNjNi00N2FiLTgwMWEtYTQzNzFkODBiMmUxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3Mzk4NjM0ODQsImlzcyI6IkVTaG9wQmFja2VuZCIsImF1ZCI6IkVTaG9wRnJvbnRlbmQifQ.AaBhF0qcqvAjkVd9G5C57Vpkji-Uez6X24Q6nyZQJWw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Name",
+									"value": "Elektronik Kategorisi",
+									"type": "text"
+								},
+								{
+									"key": "Description",
+									"value": "Bilgisayarlar, telefonlar ve diğer elektronik ürünler.",
+									"type": "text"
+								},
+								{
+									"key": "IsActive",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "IsDeleted",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "Image",
+									"type": "file",
+									"src": "/C:/Users/enginniyazi/Documents/GitHub/10-BE-TEMEL-YY/05-MVC/Week14/09-11-2024/Project08_PortfolioApp/wwwroot/ui/img/hero-img.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUri}}/categories",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update IsActive",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ0NzU3Mzc1LWE0OTctNDk2Yi04NWRjLWE1MTAwMjdiZDliMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbnVzZXJAZ21haWwuY29tIiwianRpIjoiYTM0OTFjYWItODNjNi00N2FiLTgwMWEtYTQzNzFkODBiMmUxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3Mzk4NjM0ODQsImlzcyI6IkVTaG9wQmFja2VuZCIsImF1ZCI6IkVTaG9wRnJvbnRlbmQifQ.AaBhF0qcqvAjkVd9G5C57Vpkji-Uez6X24Q6nyZQJWw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/categories/updateisactive/11",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"updateisactive",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Soft Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ0NzU3Mzc1LWE0OTctNDk2Yi04NWRjLWE1MTAwMjdiZDliMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbnVzZXJAZ21haWwuY29tIiwianRpIjoiYTM0OTFjYWItODNjNi00N2FiLTgwMWEtYTQzNzFkODBiMmUxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3Mzk4NjM0ODQsImlzcyI6IkVTaG9wQmFja2VuZCIsImF1ZCI6IkVTaG9wRnJvbnRlbmQifQ.AaBhF0qcqvAjkVd9G5C57Vpkji-Uez6X24Q6nyZQJWw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/categories/softdelete/11",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"softdelete",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hard Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ0NzU3Mzc1LWE0OTctNDk2Yi04NWRjLWE1MTAwMjdiZDliMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbnVzZXJAZ21haWwuY29tIiwianRpIjoiYTM0OTFjYWItODNjNi00N2FiLTgwMWEtYTQzNzFkODBiMmUxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3Mzk4NjM0ODQsImlzcyI6IkVTaG9wQmFja2VuZCIsImF1ZCI6IkVTaG9wRnJvbnRlbmQifQ.AaBhF0qcqvAjkVd9G5C57Vpkji-Uez6X24Q6nyZQJWw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/categories/harddelete/1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"harddelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImI1ODJlZjAwLTgzNWEtNGNhMC04ZGVmLWY3N2IyY2NhZjY3MCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJ0ZXN0dXNlciIsImp0aSI6IjdhZDE3ODU4LWEwYTUtNGMxNC1iYjNkLTA4NDdiNzgwZDVkOCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJleHAiOjE3Mzk3OTAzNjEsImlzcyI6IkVTaG9wQmFja2VuZCIsImF1ZCI6IkVTaG9wRnJvbnRlbmQifQ.KnlZ_oygKCie9diGylBTRqyqME5rzIpO1kHyy9-nALs",
+			"type": "default"
+		},
+		{
+			"key": "baseUri",
+			"value": "http://localhost:5210/api",
+			"type": "string"
+		}
+	]
+}
