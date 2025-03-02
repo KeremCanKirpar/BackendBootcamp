@@ -153,7 +153,9 @@ public class ProductManager : IProductService
         try
         {
             var products = await _productRepository.GetAllAsync(
-                showIsDeleted: true, predicate: x => x.IsDeleted
+                predicate: x => x.IsDeleted,
+                showIsDeleted: true
+                
             );
             if (!products.Any())
             {
@@ -194,7 +196,10 @@ public class ProductManager : IProductService
     {
         try
         {
-            var product = await _productRepository.GetAsync(id);
+            var product = await _productRepository.GetAsync(
+                predicate: x=>x.Id==id,
+                showIsDeleted : true
+            );
             if (product == null)
             {
                 return ResponseDto<ProductDto>.Fail("Ürün bulunamadı.", StatusCodes.Status404NotFound);
@@ -263,7 +268,10 @@ public class ProductManager : IProductService
     {
         try
         {
-            var product = await _productRepository.GetAsync(id);
+            var product = await _productRepository.GetAsync(
+                predicate: x=>x.Id==id,
+                showIsDeleted:true
+            );
             if (product == null)
             {
                 return ResponseDto<NoContent>.Fail("Ürün bulunamadı.", StatusCodes.Status404NotFound);
@@ -287,7 +295,10 @@ public class ProductManager : IProductService
     {
         try
         {
-            var product = await _productRepository.GetAsync(id);
+            var product = await _productRepository.GetAsync(
+                predicate: x=> x.Id==id,
+                showIsDeleted:true
+            );
             if (product == null)
             {
                 return ResponseDto<NoContent>.Fail("Ürün bulunamadı.", StatusCodes.Status404NotFound);
@@ -369,27 +380,27 @@ public class ProductManager : IProductService
         }
     }
 
-    public async Task<ResponseDto<bool>> UpdateIsActiveAsync(int id)
+    public async Task<ResponseDto<NoContent>> UpdateIsActiveAsync(int id)
     {
         try
         {
             var product = await _productRepository.GetAsync(id);
             if (product == null)
             {
-                return ResponseDto<bool>.Fail("Ürün bulunamadı.", StatusCodes.Status404NotFound);
+                return ResponseDto<NoContent>.Fail("Ürün bulunamadı.", StatusCodes.Status404NotFound);
             }
             product.IsActive = !product.IsActive;
             _productRepository.Update(product);
             var result = await _unitOfWork.SaveAsync();
             if (result < 1)
             {
-                return ResponseDto<bool>.Fail("Ürün güncellenirken bir hata oluştu.", StatusCodes.Status500InternalServerError);
+                return ResponseDto<NoContent>.Fail("Ürün güncellenirken bir hata oluştu.", StatusCodes.Status500InternalServerError);
             }
-            return ResponseDto<bool>.Success(product.IsActive, StatusCodes.Status200OK);
+            return ResponseDto<NoContent>.Success(StatusCodes.Status200OK);
         }
         catch (Exception ex)
         {
-            return ResponseDto<bool>.Fail(ex.Message, StatusCodes.Status500InternalServerError);
+            return ResponseDto<NoContent>.Fail(ex.Message, StatusCodes.Status500InternalServerError);
         }
     }
 

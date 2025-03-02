@@ -1,18 +1,20 @@
-@model List<CategoryModel>
+@model List<ProductModel>
+
 @{
     ViewData["Title"] = "Index";
 }
+
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Kategoriler</h1>
+                <h1>Ürünler</h1>
             </div>
             <div class="col-sm-6 d-flex justify-content-end">
                 <a asp-area="Admin" asp-controller="Category" asp-action="Create" class="btn btn-primary btn-sm"><i
-                        class="fas fa-plus mr-1"></i>Yeni Kategori</a>
+                        class="fas fa-plus mr-1"></i>Yeni Ürün</a>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -29,35 +31,39 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Kategori</th>
+                                    <th>Ürün</th>
                                     <th>Aktif</th>
+                                    <th>Fiyat</th>
                                     <th>İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var category in Model)
+                                @foreach (var product in Model)
                                 {
                                     <tr>
-                                        <td>@category.Id</td>
+                                        <td>@product.Id</td>
                                         <td>
-                                            <img src="@($"http://localhost:5210{category.ImageUrl}")" class="img-fluid"
+                                            <img src="@($"http://localhost:5210{product.ImageUrl}")" class="img-fluid"
                                                 width="50" />
-                                            <span>@category.Name</span>
+                                            <span>@product.Name</span>
                                         </td>
                                         <td>
                                             <div class="custom-control custom-switch">
                                                 <input class="custom-control-input update-status"
-                                                    type="checkbox" @(category.IsActive ? "checked":"")
-                                                    id="category-@category.Id" data-id="@category.Id"/>
-                                                    <label class="custom-control-label" for="category-@category.Id">
+                                                    type="checkbox" @(product.IsActive ? "checked":"")
+                                                    id="product-@product.Id" data-id="@product.Id"/>
+                                                    <label class="custom-control-label" for="product-@product.Id">
                                                 </label>
                                             </div>
                                    
                                         </td>
                                         <td>
+                                            @product.Price.ToString("C0")
+                                            </td>
+                                        <td>
                                             <a asp-area="Admin" asp-controller="Product" asp-action="Edit"
-                                                asp-route-id="@category.Id" class="btn btn-warning btn-sm">Düzenle</a>
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteCategory(@category.Id)">Sil</button>
+                                                asp-route-id="@product.Id" class="btn btn-warning btn-sm">Düzenle</a>
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteProduct(@product.Id)">Sil</button>
                                         </td>
                                     </tr>
                                 }
@@ -126,7 +132,7 @@
         });
         
         $(document).on('change','.update-status',function(){
-            const categoryId = $(this).data('id');
+            const productId = $(this).data('id');
             const switchButton = $(this);
             const label = switchButton.next('label');
             const isActive = switchButton.prop('checked');
@@ -134,12 +140,18 @@
             // CSRF token'ı alacağız
 
             $.ajax({
-                url: '@Url.Action("UpdateIsActive")', // /admin/category/updateisactive
+                @* url: '@Url.Action("UpdateIsActive","Product")', // /admin/category/updateisactive *@
+                url:"/admin/product/updateisactive",
                 type: 'POST',
-                data: {id: categoryId},
+                data: {id: productId},
                 success:function(response){
-                    // sweetalert modal'ı kullanacağız
-                    console.log(response);
+                   Swal.fire({
+                   position:"top-end",
+                   icon:"success",
+                   title:"İşlem Başarılı bir şekilde kayıt edildi",
+                   showConfirmButton:false,
+                   timer:1500
+                   })
                 },
                 error:function(err){
                     console.log(err);
@@ -147,9 +159,9 @@
             });
         });
     
-        function deleteCategory(categoryId){
+        function deleteProduct(productId){
             Swal.fire({ 
-                title:"Silmek istediğinizden emin misiniz?",
+                title:"DİKKAT!",
                 text:"Bu İşlem geri alınamaz!",
                 icon:"warning",
                 showCancelButton:true,
@@ -157,19 +169,19 @@
                 confirmButtonColor:"#d33",
                 denyButtonColor:"#3085d6",
                 cancelButtonColor:"#6c757d",
-                confirmButtonText:"Sil",
+                confirmButtonText:"Kalıcı Olarak Sil",
                 denyButtonText:"Çöp Kutusuna Gönder",
                 cancelButtonText:"Vazgeç",
             }).then(function(result){
                 if(result.isConfirmed){
                     $.ajax({
-                    url:'/Admin/Category/HardDelete/' + categoryId,
+                    url:'/Admin/Product/HardDelete/' + productId,
                     type:'DELETE',
                     success:function(response){
                         if(response.isSuccessful){
                             Swal.fire({
                                 title: "İşlem Başarılı!",
-                                text: "Kategori başarıyla kalıcı olarak silindi!",
+                                text: "Ürün başarıyla kalıcı olarak silindi!",
                                 icon: "success"
                             }).then(function(){
                                 window.location.reload()
@@ -177,7 +189,7 @@
                         }else{
                             Swal.fire({
                                 title: "İşlem Başarısız Oldu!",
-                                text: response.error || "Kategori kalıcı olarak silinmeye çalışılırken bir sorun oluştu!",
+                                text: response.error || "Ürün kalıcı olarak silinmeye çalışılırken bir sorun oluştu!",
                                 icon: "error"
                             })
                         }
@@ -185,20 +197,20 @@
                     error:function(err){
                         Swal.fire({
                                 title: "İşlem Başarısız!",
-                                text: "Kategori silinirken bir sorun oluştu!",
+                                text: "Ürün silinirken bir sorun oluştu!",
                                 icon: "error"
                             })
                        }
                     })
                 }else if(result.isDenied) {
                     $.ajax({
-                        url:'/Admin/Category/SoftDelete/' + categoryId,
+                        url:'/Admin/Product/SoftDelete/' + productId,
                         type:'DELETE',
                         success:function(response){
                             if(response.isSuccessful){
                                 Swal.fire({
                                     title: "İşlem Başarılı!",
-                                    text: "Kategori Çöp Kutusuna başarıyla gönderildi'",
+                                    text: "Ürün Çöp Kutusuna başarıyla gönderildi'",
                                     icon: "success"
                                 }).then(function(){
                                     window.location.reload()
@@ -206,7 +218,7 @@
                             }else{
                                 Swal.fire({
                                     title: "İşlem Başarısız!",
-                                    text: "Kategori Çöp Kutusuna gönderilirken bir sorun oluştu!",
+                                    text: "Ürün Çöp Kutusuna gönderilirken bir sorun oluştu!",
                                     icon:"error"
                                 })
                             }
@@ -215,7 +227,7 @@
                                 console.log(err);
                                 Swal.fire({
                                     title: "İşlem Başarısız!",
-                                    text: "Kategori Çöp Kutusuna gönderilirken bir sorun oluştu!",
+                                    text: "Ürün Çöp Kutusuna gönderilirken bir sorun oluştu!",
                                     icon:"error"
                                 })
                         }
@@ -225,5 +237,5 @@
             })
         }
     </script>
-    @* "url": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/tr.json" *@
+   
 }

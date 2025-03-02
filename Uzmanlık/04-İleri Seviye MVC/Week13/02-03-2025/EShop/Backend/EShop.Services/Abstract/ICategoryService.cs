@@ -16,7 +16,7 @@ namespace EShop.Services.Abstract
         Task<ResponseDto<NoContent>> HardDeleteAsync(int id);
         Task<ResponseDto<int>> CountAsync();
         Task<ResponseDto<int>> CountAsync(bool? isActive);
-        Task<ResponseDto<bool>> UpdateIsActiveAsync(int id);
+        Task<ResponseDto<NoContent>> UpdateIsActiveAsync(int id);
 
     }
 }
