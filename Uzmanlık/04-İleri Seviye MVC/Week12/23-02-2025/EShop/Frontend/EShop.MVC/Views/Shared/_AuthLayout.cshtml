@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - EShop</title>
+
+    <link rel="stylesheet" href="~/admin/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/admin/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    @await RenderSectionAsync("Styles", false)
+</head>
+@await Component.InvokeAsync("NToastNotify")
+
+@RenderBody()
+
+<script src="~/admin/plugins/jquery/jquery.min.js"></script>
+<script src="~/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/admin/dist/js/adminlte.min.js"></script>
+@await RenderSectionAsync("Scripts", false)
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+﻿<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    @await Html.PartialAsync("LayoutPartials/_BrandLogoPartial")
+    <div class="sidebar">
+        @await Component.InvokeAsync("UserPanel")
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+               @await Html.PartialAsync("LayoutPartials/_LeftMenuPartial")
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
