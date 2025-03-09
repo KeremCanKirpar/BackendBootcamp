@@ -1,0 +1,37 @@
+﻿
+@model ProductModel
+
+<div class="single-product">
+    <img class="img-fluid" src="@Url.ApiContent(Model.ImageUrl)" alt="">
+    <div class="product-details">
+        <h6>@Model.Name</h6>
+        <div class="price">
+            <h6>@Model.Price.ToString("C2")</h6>
+        </div>
+        <div class="prd-bottom">
+            <form id="addToCart_@Model.Id" asp-area="" asp-controller="Cart" asp-action="AddToCart" method="post">
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <input type="hidden" name="quantity" value="1" />
+                <a class="social-info" style="cursor: pointer;"
+                onclick="document.getElementById('addToCart_@Model.Id').submit();">
+                    <span class="ti-bag"></span>
+                    <p class="hover-text">Sepete Ekle</p>
+                </a>
+                <a  class="social-info" onclick="document.getElementById('addToCart_@Model.Id').submit();">
+                    <span class="lnr lnr-heart"></span>
+                    <p class="hover-text">Favori</p>
+                </a>
+                <a href="" class="social-info">
+
+                    <span class="lnr lnr-sync"></span>
+                    <p class="hover-text">Karşılaştır</p>
+                </a>
+                <a href="" class="social-info">
+                    <span class="lnr lnr-move"></span>
+                    <p class="hover-text">İncele</p>
+                </a>
+            </form>
+           
+        </div>
+    </div>
+</div>
