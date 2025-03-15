@@ -1,0 +1,17 @@
+<script src="~/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+  $(function () {
+    $("#entity-table").DataTable({
+      "stateSave": true,
+      "responsive": true,
+      "lengthChange": true,
+      "autoWidth": true,
+      "language": {
+        "url": "/admin/plugins/datatables/tr.json"
+      }
+    });
+  });
+</script>

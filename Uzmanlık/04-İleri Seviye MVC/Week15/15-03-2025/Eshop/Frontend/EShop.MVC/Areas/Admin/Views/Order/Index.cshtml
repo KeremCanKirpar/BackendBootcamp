@@ -1,0 +1,189 @@
+@using System.ComponentModel.DataAnnotations
+@model List<OrderModel>
+@{
+    ViewData["Title"] = "Siparişler";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Siparişler</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6 d-flex justify-content-end gap-2">
+                <div class="btn-group">
+                    @if (ViewBag.OrderStatus == null)
+                    {
+                        <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="btn btn-primary btn-sm">
+                            Tümü
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="Admin" asp-controller="Order" asp-action="Index"
+                            class="btn btn-outline-primary btn-sm">
+                            Tümü
+                        </a>
+                    }
+                    @foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
+                    {
+                        var btnClass = ViewBag.OrderStatus == status ? "btn-primary" : "btn-outline-primary";
+                        <a asp-area="Admin" asp-controller="Order" asp-action="Index" asp-route-status="@status"
+                            class="btn @btnClass btn-sm">
+                            @(status.GetType()
+                                                    .GetField(status.ToString())
+                                                    ?.GetCustomAttributes(typeof(DisplayAttribute), false)
+                                                    .Cast<DisplayAttribute>()
+                                                    .FirstOrDefault()
+                                                    ?.Name ?? status.ToString())
+                    </a>
+                                        }
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-12">
+
+                <table id="entity-table" class="table table-striped table-bordered dt-responsive nowrap"
+                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Sipariş Tarihi</th>
+                            <th>Müşteri</th>
+                            <th>Tutar</th>
+                            <th>Durum</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var o in Model)
+                        {
+                            <tr>
+                                <td>@o.Id</td>
+                                <td>@o.CreatedAt.ToUniversalTime()</td>
+                                <td>@o.ApplicationUser!.FirstName @o.ApplicationUser!.LastName</td>
+                                <td>@o.TotalAmount.ToString("C2")</td>
+                                <td class="text-right">
+                                    <select class="form-select order-status-select" data-order-id="@o.Id"
+                                        asp-items="@(ViewBag.GetOrderStatusSelectList(o.OrderStatus))">
+                                    </select>
+                                </td>
+                                <td class="text-right">
+                                    <a class="btn btn-warning btn-sm">Sipariş Detayları</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section StylesSection {
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="~/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+}
+
+@section ScriptsSection {
+    <!-- DataTables  & Plugins -->
+    <script src="~/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="~/admin/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+    @await Html.PartialAsync("_DataTablesPartial")
+
+    <script>
+        $(document).ready(function () {
+            $(document).on('change', '.order-status-select', function () {
+                const orderId = $(this).data('order-id');
+                const newStatus = $(this).val();
+                const $select = $(this);
+                const token = $('input[name="__RequestVerificationToken"]').val();
+
+                // Select'i geçici olarak devre dışı bırak
+                $select.prop('disabled', true);
+
+                $.ajax({
+                    url: '/Admin/Order/UpdateOrderStatus',
+                    type: 'PUT',
+                    data: {
+                        id: orderId,
+                        status: newStatus
+                    },
+                    headers: {
+                        'RequestVerificationToken': token
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.isSuccessful) {
+
+                            Swal.fire({
+                                title: 'Başarılı!',
+                                text: 'Sipariş durumu güncellendi.',
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            // Başarısız olursa select'i eski haline getir
+                            $select.prop('selectedIndex', $select.data('previous-value'));
+
+                            Swal.fire({
+                                title: "İşlem Başarısız Oldu!",
+                                text: response.error || "Sipariş durumu güncellenirken bir sorun oluştu!",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    },
+                    error: function () {
+                        // Hata durumunda select'i eski haline getir
+                        $select.prop('selectedIndex', $select.data('previous-value'));
+
+                        Swal.fire({
+                            title: "İşlem Başarısız Oldu!",
+                            text: "Sipariş durumu güncellenirken bir sorun oluştu!",
+                            icon: "error",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    complete: function () {
+                        // İşlem tamamlandığında select'i tekrar aktif et
+                        $select.prop('disabled', false);
+                    }
+                });
+            });
+
+
+            // Select değeri değişmeden önceki değeri sakla
+            $('.order-status-select').on('focus', function () {
+                $(this).data('previous-value', this.selectedIndex);
+            });
+        });
+    </script>
+}

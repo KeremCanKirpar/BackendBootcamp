@@ -1,0 +1,69 @@
+@using EShop.MVC.Helpers
+@model ProductModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!--================Single Product Area =================-->
+
+<div class="product_image_area">
+    <div class="container p-3">
+        <div class="row s_product_inner">
+            <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                <div class="product-img p-2 bg-light">
+                    <img class="img-fluid" src="@Url.ApiContent(Model.ImageUrl)" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text">
+                    <h3>@Model.Name</h3>
+                    <h2>@Model.Price.ToString("C2")</h2>
+                    <ul class="list">
+                        <li>
+                            <span>Kategoriler: </span> :
+                            @{
+                                for (int i = 0; i < Model.Categories.Count; i++)
+                                {
+                                    if (i != Model.Categories.Count - 1)
+                                    {
+                                        <a class="active" asp-controller="Product" asp-action="ProductsByCategory"
+                                            asp-route-id="@Model.Categories[i].Id">@($"{Model.Categories[i].Name} | ")</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="active" asp-controller="Product" asp-action="ProductsByCategory"
+                                            asp-route-id="@Model.Categories[i].Id">@($"{Model.Categories[i].Name}")</a>
+                                    }
+
+                                }
+                            }
+                        </li>
+                    </ul>
+                    <p>@Model.Properties</p>
+                    <form id="addToCart_@Model.Id" asp-controller="Cart" asp-action="AddToCart" method="post">
+                        <input type="hidden" name="productId" value="@Model.Id" />
+                        <div class="product_count">
+                            <label for="quantity">Adet:</label>
+                            <input type="text" name="quantity" id="sst" min="1" max="100" maxlength="12" value="1"
+                                title="Adet:" class="input-text qty">
+                            <button
+                                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst) ) result.value++;return false;"
+                                class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                            <button
+                                onclick="var result = document.getElementById('sst'); var sst = result.value; console.log(sst,result.value); if( !isNaN( sst ) &amp;&amp; sst > 1 ) result.value--;return false;"
+                                class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                        </div>
+                        <div class="card_area d-flex align-items-center">
+                            <a class="primary-btn" href="#">Sepete Ekle</a>
+                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================End Single Product Area =================-->
+
+@await Html.PartialAsync("Others/_RelatedProductPartial")

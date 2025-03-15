@@ -1,0 +1,15 @@
+{
+    "info": "_TOTAL_ kayıttan _START_ - _END_ arasındakiler gösteriliyor.",
+    "infoEmpty": "Kayıt yok!",
+    "emptyTable": "Kayıt getirilemedi!",
+    "infoFiltered": "(_MAX_ kayıttan içerisinden bulunan)",
+    "infoThousands": ".",
+    "lengthMenu": "Bir sayfada _MENU_ kayıt görünsün",
+    "paginate": {
+        "first": "İlk",
+        "last": "Son",
+        "next": "Sonraki",
+        "previous": "Önceki"
+    },
+    "search": "Ara"
+}

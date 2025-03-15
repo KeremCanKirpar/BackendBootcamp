@@ -1,0 +1,1164 @@
+{
+	"info": {
+		"_postman_id": "0907bd58-aaa2-4bdb-9e97-a6f6dcf85e7e",
+		"name": "EShop API Collection",
+		"description": "EShop API için test koleksiyonu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29898144"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/auth/login",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userNameOrEmail\": \"testuser@gmail.com\",\n    \"password\": \"Test123.,\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/auth/register",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"address\": \"Test Address\",\n    \"city\": \"Test City\",\n    \"gender\": 1,\n    \"dateOfBirth\": \"1990-01-01\",\n    \"email\": \"testuser@gmail.com\",\n    \"userName\": \"testuser\",\n    \"password\": \"Test123.,\",\n    \"confirmPassword\": \"Test123.,\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/auth/password",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"auth",
+								"password"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentPassword\": \"Test123.,\",\n    \"newPassword\": \"NewTest123.,\",\n    \"confirmNewPassword\": \"NewTest123.,\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/auth/users/password-reset-request",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"auth",
+								"users",
+								"password-reset-request"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testuser@gmail.com\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/auth/users/password-reset",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"auth",
+								"users",
+								"password-reset"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"user-id-from-email\",\n    \"token\": \"reset-token-from-email\",\n    \"newPassword\": \"NewTest123.,\",\n    \"confirmNewPassword\": \"NewTest123.,\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Get My Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/auth/users/me",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"auth",
+								"users",
+								"me"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update My Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/auth/users/me",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"auth",
+								"users",
+								"me"
+							]
+						},
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "Updated Test",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Updated User",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Updated Address",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Updated City",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "dateOfBirth",
+									"value": "1990-01-01",
+									"type": "text"
+								},
+								{
+									"key": "profileImage",
+									"type": "file",
+									"src": []
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/categories",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Category By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/categories/1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Test Category",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Test Description",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "isMenuItem",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUri}}/categories",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Updated Category",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Updated Description",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "isMenuItem",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUri}}/categories/1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Hard Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/categories/1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Soft Delete Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/categories/1/status",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"1",
+								"status"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Category Active Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/categories/1/active",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"1",
+								"active"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Category MenuItem Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/categories/1/menuitem",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"1",
+								"menuitem"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Categories (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/categories/admin?isActive=true&isDeleted=false",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"admin"
+							],
+							"query": [
+								{
+									"key": "isActive",
+									"value": "true"
+								},
+								{
+									"key": "isDeleted",
+									"value": "false"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Categories Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/categories/count?isActive=true",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"categories",
+								"count"
+							],
+							"query": [
+								{
+									"key": "isActive",
+									"value": "true"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/products?includeCategories=true&categoryId=1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "includeCategories",
+									"value": "true"
+								},
+								{
+									"key": "categoryId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Product By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/products/1?includeCategories=true",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products",
+								"1"
+							],
+							"query": [
+								{
+									"key": "includeCategories",
+									"value": "true"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Test Product",
+									"type": "text"
+								},
+								{
+									"key": "properties",
+									"value": "Test Properties",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "categoryIds",
+									"value": "[1]",
+									"type": "text"
+								},
+								{
+									"key": "isHome",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUri}}/products",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Updated Product",
+									"type": "text"
+								},
+								{
+									"key": "properties",
+									"value": "Updated Properties",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "150",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "categoryIds",
+									"value": "[1, 2]",
+									"type": "text"
+								},
+								{
+									"key": "isHome",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUri}}/products/1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Hard Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/products/1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Soft Delete Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/products/1/status",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"status"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Product Active Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/products/1/active",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"active"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Product Home Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/products/1/home",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"home"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Products (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/products/admin?isActive=true&includeCategories=true&categoryId=1&isDeleted=false",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products",
+								"admin"
+							],
+							"query": [
+								{
+									"key": "isActive",
+									"value": "true"
+								},
+								{
+									"key": "includeCategories",
+									"value": "true"
+								},
+								{
+									"key": "categoryId",
+									"value": "1"
+								},
+								{
+									"key": "isDeleted",
+									"value": "false"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Products Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/products/count?isActive=true",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"products",
+								"count"
+							],
+							"query": [
+								{
+									"key": "isActive",
+									"value": "true"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Carts",
+			"item": [
+				{
+					"name": "Get Cart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/carts",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					}
+				},
+				{
+					"name": "Add To Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": 1,\n    \"quantity\": 2\n}"
+						},
+						"url": {
+							"raw": "{{baseUri}}/carts",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					}
+				},
+				{
+					"name": "Remove From Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/carts/1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"carts",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Change Quantity",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/carts/1/quantity?quantity=3",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"carts",
+								"1",
+								"quantity"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "3"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Clear Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/carts/items",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"carts",
+								"items"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderItems\": [\n        {\n            \"productId\": 1,\n            \"unitPrice\": 100,\n            \"quantity\": 2\n        }\n    ],\n    \"address\": \"Test Address\",\n    \"city\": \"Test City\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUri}}/orders",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Order By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/orders/1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/orders?status=1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get My Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/orders/my-orders?status=1",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"orders",
+								"my-orders"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Orders By Date",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/orders/bydate?startDate=2024-01-01&endDate=2024-12-31",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"orders",
+								"bydate"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-12-31"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Change Order Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/orders/1/status?orderStatus=2",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"orders",
+								"1",
+								"status"
+							],
+							"query": [
+								{
+									"key": "orderStatus",
+									"value": "2"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Cancel Order",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{userToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUri}}/orders/1/cancel",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"orders",
+								"1",
+								"cancel"
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}
