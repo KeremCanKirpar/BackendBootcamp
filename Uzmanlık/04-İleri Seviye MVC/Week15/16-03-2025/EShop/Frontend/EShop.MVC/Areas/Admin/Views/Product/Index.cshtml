@@ -1,0 +1,355 @@
+@model List<ProductModel>
+@{
+    ViewData["Title"] = "Ürünler";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Ürünler</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6 d-flex justify-content-end">
+                <a asp-action="Create" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus"></i> Yeni Ürün
+                </a>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-12">
+
+                <table id="entity-table" class="table table-striped table-bordered dt-responsive nowrap"
+                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Resim</th>
+                            <th>Ad</th>
+                            <th>Fiyat</th>
+                            <th>Kategoriler</th>
+                            <th class="text-center">Durum</th>
+                            <th class="text-center">Anasayfa</th>
+                            <th class="text-center">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@Url.ApiContent(product.ImageUrl)" class="img-fluid" alt="@product.Name"
+                                        style="max-height: 30px;" />
+                                </td>
+                                <td>@product.Name</td>
+                                <td>@product.Price.ToString("C2")</td>
+                                <td>
+                                    @string.Join(" | ", product.Categories.Select(c => c.Name))
+                                </td>
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input update-status"
+                                            id="customSwitch_@product.Id" @(product.IsActive ? "checked" : "")
+                                            data-id="@product.Id">
+                                        <label class="custom-control-label" for="customSwitch_@product.Id"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input update-is-home"
+                                            id="isHome_@product.Id" @(product.IsHome ? "checked" : "")
+                                            data-id="@product.Id">
+                                        <label class="custom-control-label" for="isHome_@product.Id"></label>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    @if (product.IsActive)
+                                    {
+                                        <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning btn-sm">
+                                            <i class="fas fa-edit"></i> Düzenle
+                                        </a>
+                                    }
+
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                        onclick="deleteProduct(@product.Id)">
+                                        <i class="fas fa-trash"></i> Sil
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section StylesSection {
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="~/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+}
+
+@section ScriptsSection {
+    <!-- DataTables  & Plugins -->
+    <script src="~/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="~/admin/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+    @await Html.PartialAsync("_DataTablesPartial")
+
+    <script>
+        $(document).ready(function () {
+
+            // Switch buton değişikliğini yakala
+            $(document).on('change', '.update-status', function () {
+                const id = $(this).data('id');
+                const $switch = $(this);
+                const $label = $switch.next('label');
+                const isActive = $switch.prop('checked');
+
+                // CSRF token'ı al
+                const token = $('input[name="__RequestVerificationToken"]').val();
+
+                // Switch'i geçici olarak devre dışı bırak
+                $switch.prop('disabled', true);
+
+                $.ajax({
+                    url: '@Url.Action("UpdateIsActive")',
+                    type: 'PUT',
+                    data: { id: id },
+                    headers: {
+                        'RequestVerificationToken': token
+                    },
+                    success: function (response) {
+                        if (response.isSuccessful) {
+                            Swal.fire({
+                                title: 'Başarılı!',
+                                text: `Ürün başarıyla ${isActive ? 'Aktif' : 'Pasif'} hale getirildi.`,
+                                icon: 'success',
+                                timer: 1000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            // Başarısız olursa switch'i eski haline getir
+                            $switch.prop('checked', !isActive);
+                            $label.text(!isActive ? 'Aktif' : 'Pasif');
+
+                            // Hata SweetAlert2 göster
+                            Swal.fire({
+                                title: "İşlem Başarısız Oldu!",
+                                text: response.error || "Ürünün durumu değiştirilmeye çalışılırken bir sorun oluştu!",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    },
+                    error: function () {
+                        // Hata durumunda switch'i eski haline getir
+                        $switch.prop('checked', !isActive);
+                        $label.text(!isActive ? 'Aktif' : 'Pasif');
+
+                        // Hata SweetAlert2 göster
+                        Swal.fire({
+                            title: "İşlem Başarısız Oldu!",
+                            text: response.error || "Ürünün durumu değiştirilmeye çalışılırken bir sorun oluştu!",
+                            icon: "error",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    complete: function () {
+                        // İşlem tamamlandığında switch'i tekrar aktif et
+                        $switch.prop('disabled', false);
+                    }
+                });
+            });
+
+            $(document).on('change', '.update-is-home', function () {
+                const id = $(this).data('id');
+                const $switch = $(this);
+                const $label = $switch.next('label');
+                const isHome = $switch.prop('checked');
+
+                // CSRF token'ı al
+                const token = $('input[name="__RequestVerificationToken"]').val();
+
+                // Switch'i geçici olarak devre dışı bırak
+                $switch.prop('disabled', true);
+
+                $.ajax({
+                    url: '@Url.Action("UpdateIsHome")',
+                    type: 'PUT',
+                    data: { id: id },
+                    headers: {
+                        'RequestVerificationToken': token
+                    },
+                    success: function (response) {
+                        if (response.isSuccessful) {
+                            Swal.fire({
+                                title: 'Başarılı!',
+                                text: `Anasayfada görünme durumu değiştirildi.`,
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            // Başarısız olursa switch'i eski haline getir
+                            $switch.prop('checked', !isHome);
+                            $label.text(!isHome ? 'Aktif' : 'Pasif');
+
+                            // Hata SweetAlert2 göster
+                            Swal.fire({
+                                title: "İşlem Başarısız Oldu!",
+                                text: response.error || "Ürünün durumu değiştirilmeye çalışılırken bir sorun oluştu!",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    },
+                    error: function () {
+                        // Hata durumunda switch'i eski haline getir
+                        $switch.prop('checked', !isHome);
+                        $label.text(!isHome ? 'Aktif' : 'Pasif');
+
+                        // Hata SweetAlert2 göster
+                        Swal.fire({
+                            title: "İşlem Başarısız Oldu!",
+                            text: response.error || "Ürünün durumu değiştirilmeye çalışılırken bir sorun oluştu!",
+                            icon: "error",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    complete: function () {
+                        // İşlem tamamlandığında switch'i tekrar aktif et
+                        $switch.prop('disabled', false);
+                    }
+                });
+            });
+
+
+        });
+
+        function deleteProduct(id) {
+            Swal.fire({
+                title: 'Silmek istediğinizden emin misiniz?',
+                text: "Bu işlem geri alınamaz!",
+                icon: 'warning',
+                showCancelButton: true,
+                showDenyButton: true,
+                confirmButtonColor: '#d33',
+                denyButtonColor: '#3085d6',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sil',
+                denyButtonText: 'Çöp Kutusuna Gönder',
+                cancelButtonText: 'Vazgeç'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Hard Delete
+                    $.ajax({
+                        url: '/Admin/Product/HardDelete/' + id,
+                        type: 'DELETE',
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (response) {
+                            if (response.isSuccessful) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: "Ürün kalıcı olarak silindi!",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }
+                                ).then(() => {
+                                    window.location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "İşlem Başarısız Oldu!",
+                                    text: response.error || "Ürünün silinmeye çalışılırken bir sorun oluştu!",
+                                    icon: "error",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: "İşlem Başarısız Oldu!",
+                                text: response.error || "Ürünün silinmeye çalışılırken bir sorun oluştu!",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                } else if (result.isDenied) {
+                    // Soft Delete
+                    $.ajax({
+                        url: '/Admin/Product/SoftDelete/' + id,
+                        type: 'PUT',
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (response) {
+                            if (response.isSuccessful) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: "Ürün çöp kutusuna gönderildi!",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }
+                                ).then(() => {
+                                    window.location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "İşlem Başarısız Oldu!",
+                                    text: response.error || "Ürünün çöp kutusuna gönderilmeye çalışılırken bir sorun oluştu!",
+                                    icon: "error",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: "İşlem Başarısız Oldu!",
+                                text: response.error || "Ürünün çöp kutusuna gönderilmeye çalışılırken bir sorun oluştu!",
+                                icon: "error",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+}

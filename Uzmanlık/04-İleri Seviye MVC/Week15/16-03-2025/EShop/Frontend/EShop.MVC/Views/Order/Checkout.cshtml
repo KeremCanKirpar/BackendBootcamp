@@ -1,0 +1,111 @@
+@model OrderCreateModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Ödeme</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap">
+    <div class="container">
+        <div class="billing_details">
+            <form class="row contact_form" asp-area="" asp-controller="Order" asp-action="Checkout" method="post"
+                novalidate="novalidate">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Ödeme Bilgileri</h3>
+
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=FirstName>
+                            <span class="placeholder" data-placeholder="Ad"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=LastName>
+                            <span class="placeholder" data-placeholder="Soyad"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=PhoneNumber>
+                            <span class="placeholder" data-placeholder="Telefon"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=Email>
+                            <span class="placeholder" data-placeholder="Email"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=IdentityNumber>
+                            <span class="placeholder" data-placeholder="TC Kimlik No"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=Address>
+                            <span class="placeholder" data-placeholder="Adres"></span>
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input class="form-control" asp-for=City>
+                            <span class="placeholder" data-placeholder="Şehir"></span>
+                        </div>
+
+                        <div class="col-md-12 form-group p_star">
+                            <h3>Kart Bilgileri</h3>
+                        </div>
+
+
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=CardHolderName>
+                            <span class="placeholder" data-placeholder="Kartın üzerindeki isim"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=CardNumber>
+                            <span class="placeholder" data-placeholder="Kart Numarası"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=ExpireMonth>
+                            <span class="placeholder" data-placeholder="Son Kullanma Ay"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=ExpireYear>
+                            <span class="placeholder" data-placeholder="Son Kullanma Yıl"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input class="form-control" asp-for=Cvc>
+                            <span class="placeholder" data-placeholder="Cvc"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2>Siparişiniz</h2>
+                            <ul class="list">
+                                <li><a href="#">Ürün <span>Tutar</span></a></li>
+                                @foreach (var orderItem in Model.OrderItems)
+                                {
+                                    <li><a href="#">@orderItem.ProductName <span class="middle">x @orderItem.Quantity</span>
+                                            <span class="last">@orderItem.TotalPrice.ToString("C2")</span></a></li>
+                                            
+                                }
+
+                            </ul>
+                            <ul class="list list_2">
+                                <li><a href="#">Ara Toplam <span>@Model.TotalAmount.ToString("C2")</span></a></li>
+                                <li><a href="#">Kargo <span>KARGO BEDAVA!</span></a></li>
+                                <li><a href="#">Toplam <span>@Model.TotalAmount.ToString("C2")</span></a></li>
+                            </ul>
+
+                            <button type="submit" class="primary-btn" href="#">Ödemeyi Tamamla</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!--================End Checkout Area =================-->

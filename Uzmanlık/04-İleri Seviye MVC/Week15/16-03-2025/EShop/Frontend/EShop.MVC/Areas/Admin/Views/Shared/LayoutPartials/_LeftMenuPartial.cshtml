@@ -1,0 +1,130 @@
+﻿<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-copy"></i>
+        <p>
+            Kategori İşlemleri
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Create" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kategori Ekle</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kategoriler</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Trash" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Çöp Kutusu</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-chart-pie"></i>
+        <p>
+            Ürün İşlemleri
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Product" asp-action="Create" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Ürün Ekle</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Ürünler</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Product" asp-action="Trash" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Çöp Kutusu</p>
+            </a>
+        </li>
+
+    </ul>
+</li>
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-tree"></i>
+        <p>
+            Sipariş İşlemleri
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Order" asp-action="Index" class=" nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tüm Siparişler</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="pages/UI/icons.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Bugünkü Siparişler</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="pages/UI/buttons.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>İptal Edilen Siparişler</p>
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-edit"></i>
+        <p>
+            Kullanıcı İşlemleri
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="User" asp-action="Index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Üyeler</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Role" asp-action="Index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Roller</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="nav-item">
+    <a href="pages/widgets.html" class="nav-link">
+        <i class="nav-icon fas fa-th"></i>
+        <p>
+            Ayarlar
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a asp-area="" asp-controller="Account" asp-action="Logout" class="nav-link">
+        <i class="nav-icon fas fa-th"></i>
+        <p>
+            Çıkış Yap
+        </p>
+    </a>
+</li>

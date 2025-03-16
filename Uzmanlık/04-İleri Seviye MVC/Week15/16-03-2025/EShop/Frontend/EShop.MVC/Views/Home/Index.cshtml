@@ -1,0 +1,52 @@
+﻿@model ProductModel
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+@await Html.PartialAsync("Others/_BannerPartial")
+@await Html.PartialAsync("Others/_CategoryPartial")
+
+@* ProductList ViewComponent'i başlangıcı *@
+<div id="productListContainer">
+    @await Component.InvokeAsync("ProductList")
+</div>
+@* ProductList ViewComponent'i sonu *@
+@await Html.PartialAsync("Others/_FeaturesPartial")
+@await Html.PartialAsync("Others/_ExcluisivePartial")
+@await Html.PartialAsync("Others/_BrandPartial")
+
+
+
+@section ScriptsSection {
+    <!-- Owl Carousel JS -->
+    <script>
+        $(document).ready(function () {
+            console.log("ProductList component yüklendi");
+            $(".product-carousel").owlCarousel({
+                items: 2,
+                loop: true,
+                margin: 30,
+                nav: true,
+                navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                smartSpeed: 1000,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    576: {
+                        items: 2
+                    },
+                    768: {
+                        items: 3
+                    },
+                    992: {
+                        items: 4
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,162 @@
+@model RegisterModel
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Kayıt Ol</h1>
+                <nav class="d-flex align-items-center">
+                    <a asp-controller="Home" asp-action="Index">Ana Sayfa<span class="lnr lnr-arrow-right"></span></a>
+                    <a>Kayıt Ol</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="login_box_area section_gap">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="login_form_inner p-5">
+                    <h3 class="mb-4">Yeni Hesap Oluştur</h3>
+                    <p class="text-muted mb-4">
+                        Alışverişe başlamak için lütfen aşağıdaki bilgileri doldurun.
+                    </p>
+                    <form asp-action="Register" method="post" class="row login_form">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3 col-12"></div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="FirstName" class="form-control" placeholder="Ad">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="LastName" class="form-control" placeholder="Soyad">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="Email" class="form-control" placeholder="E-posta Adresi">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="Password" class="form-control" type="password" placeholder="Parola">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Parola (Tekrar)">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="DateOfBirth" class="form-control" type="date">
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <select asp-for="Gender" class="form-control">
+                                <option value="1">Cinsiyet Seçiniz</option>
+                                <option value="2">Kadın</option>
+                                <option value="3">Erkek</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="City" class="form-control" placeholder="Şehir">
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <input asp-for="Address" class="form-control" placeholder="Adres">
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-12 form-group mb-3">
+                            <button type="submit" class="primary-btn w-100">Kayıt Ol</button>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <p class="text-muted mb-0">
+                                Zaten hesabınız var mı? 
+                                <a asp-action="Login" class="text-primary">Giriş yapın</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section ScriptsSection {
+        <partial name="_ValidationScriptsPartial" />
+}
+
+@section StylesSection {
+        <style>
+            .login_form_inner {
+                background: #fff;
+                box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.07);
+                padding: 50px 70px;
+                border-radius: 10px;
+            }
+
+            .form-control {
+                border-radius: 5px;
+                height: 48px;
+                padding: 0 20px;
+                border: 1px solid #e8e8e8;
+            }
+
+            .form-control:focus {
+                border-color: #384aeb;
+                box-shadow: none;
+            }
+
+            .primary-btn {
+                height: 48px;
+                font-size: 16px;
+            }
+
+            .text-primary {
+                color: #384aeb !important;
+                text-decoration: none;
+            }
+
+            .text-primary:hover {
+                text-decoration: underline;
+            }
+
+            select.form-control {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23384aeb' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 1rem center;
+                padding-right: 2.5rem;
+            }
+
+            @@media(max - width: 768px) {
+                    .login_form_inner {
+                        padding: 30px 20px;
+                    }
+            
+                    .col-md-6 {
+                        margin-bottom: 1rem;
+                    }
+                }
+            </style>
+    }

@@ -1,0 +1,67 @@
+﻿@using EShop.MVC.Helpers
+@model List<ProductModel>
+
+<style>
+	.single-product {
+		margin-bottom: 30px;
+	}
+
+	.single-product .product-img {
+		height: 280px;
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+		background: #f6f6f6;
+		padding: 10px;
+		border-radius: 10px;
+	}
+
+	.single-product .product-img img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 10px;
+	}
+
+	.product-info {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 15px;
+		margin-bottom: 10px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+
+	.product-name {
+		flex: 1;
+		padding-right: 10px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 16px;
+		color: #333;
+	}
+
+	.product-price {
+		font-weight: bold;
+		color: #333;
+		font-size: 16px;
+		white-space: nowrap;
+	}
+</style>
+
+<section class="product-area section-gap">
+	<div class="container">
+		<div class="row">
+			@if (Model != null && Model.Any())
+			{
+				@foreach (var product in Model)
+				{
+					<!-- single product -->
+					@await Html.PartialAsync("Others/_SingleProductPartial", product)
+				}
+			}
+		</div>
+	</div>
+</section>

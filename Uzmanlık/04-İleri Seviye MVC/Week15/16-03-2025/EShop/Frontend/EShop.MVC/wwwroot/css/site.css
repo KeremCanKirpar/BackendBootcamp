@@ -1,0 +1,49 @@
+.avatar-circle {
+    width: 150px;
+    height: 150px;
+    background-color: #007bff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 45px;
+    margin: 0 auto;
+    text-transform: uppercase;
+}
+
+.avatar-circle:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Profil kartı stilleri */
+.card {
+    border: none !important;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 10px !important;
+}
+
+.card-header {
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    padding: 1.5rem !important;
+}
+
+.card-body {
+    padding: 1.5rem !important;
+}
+
+.section_gap {
+    padding: 50px 0 !important;
+    background-color: #f8f9fa !important;
+}
+
+@media (max-width: 768px) {
+    .avatar-circle {
+        width: 100px;
+        height: 100px;
+        font-size: 30px;
+    }
+}

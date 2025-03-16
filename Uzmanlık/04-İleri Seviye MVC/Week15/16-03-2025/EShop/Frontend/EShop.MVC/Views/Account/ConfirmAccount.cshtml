@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "Hesap Onaylama";
+}
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Hesap Onaylama</h1>
+                <nav class="d-flex align-items-center">
+                    <a asp-controller="Home" asp-action="Index">Ana Sayfa<span class="lnr lnr-arrow-right"></span></a>
+                    <a>Hesap Onaylama</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="login_box_area section_gap">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="login_form_inner p-5 text-center">
+                    @if (ViewBag.Message?.Contains("başarıyla") == true)
+                    {
+                            <div class="confirmation-icon success mb-4">
+                                <i class="fa fa-check-circle fa-4x"></i>
+                            </div>
+                            <h3 class="mb-4">Hesabınız Onaylandı!</h3>
+                            <p class="text-muted mb-4">@ViewBag.Message</p>
+                            <a asp-action="Login" class="primary-btn w-100">Giriş Yap</a>
+                    }
+                    else
+                    {
+                            <div class="confirmation-icon error mb-4">
+                                <i class="fa fa-times-circle fa-4x"></i>
+                            </div>
+                            <h3 class="mb-4">Onaylama Başarısız</h3>
+                            <p class="text-muted mb-4">@ViewBag.Message</p>
+                            <div class="d-flex gap-3">
+                                <a asp-action="Register" class="primary-btn w-50">Yeni Kayıt</a>
+                                <a asp-controller="Home" asp-action="Index" class="primary-btn w-50">Ana Sayfa</a>
+                            </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section StylesSection {
+        <style>
+            .login_form_inner {
+                background: #fff;
+                box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.07);
+                padding: 50px 70px;
+                border-radius: 10px;
+            }
+
+            .confirmation-icon {
+                margin: 0 auto;
+                width: 100px;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+            }
+
+            .confirmation-icon.success {
+                color: #28a745;
+            }
+
+            .confirmation-icon.error {
+                color: #dc3545;
+            }
+
+            .primary-btn {
+                height: 48px;
+                font-size: 16px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+            }
+
+            .gap-3 {
+                gap: 1rem;
+            }
+
+            @@media(max - width: 768px) {
+                    .login_form_inner {
+                        padding: 30px 20px;
+                    }
+                }
+            </style>
+    }

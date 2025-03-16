@@ -1,0 +1,130 @@
+@model CategoryCreateModel
+@{
+    ViewData["Title"] = "Yeni Kategori";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Yeni Kategori Ekleme</h1>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-end"></div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Kategori Bilgileri</h3>
+                    </div>
+                    <form asp-area="Admin" asp-controller="Category" asp-action="Create" method="post"
+                        enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for=Name></label>
+                                <input asp-for=Name class="form-control" placeholder="Kategori adını giriniz...">
+                                <span asp-validation-for=Name class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for=Description></label>
+                                <textarea asp-for=Description id="summernote">
+
+                                </textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" asp-for=Image class="custom-file-input"
+                                                    accept="image/*">
+                                                <label class="custom-file-label" for="Image">Resim seç</label>
+                                            </div>
+                                        </div>
+                                        <span asp-validation-for=Image class="text-danger"></span>
+                                        <small class="form-text text-muted">İzin verilen resim formatları: .jpg, .png,
+                                            .jpeg, .bmp</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="current-image">
+                                            <img id="image-preview" src="/images/no-image.png" class="img-fluid"
+                                                style="max-height: 150px; object-fit:contain;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" asp-for=IsMenuItem class="custom-control-input">
+                                    <label asp-for=IsMenuItem class="custom-control-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <a class="btn btn-default" asp-area="Admin" asp-controller="Category"
+                                asp-action="Index">Kategori Listesine Dön</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Yardım & İpuçları</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li>
+                                <i class="fas fa-info-circle text-info"></i>
+                                Kategori adı benzersiz olmalıdır!
+                            </li>
+                            <li>
+                                <i class="fas fa-info-circle text-info"></i>
+                                Açıklama zorunlu değildir. Ancak kategori açıklamasını yazmak daha doğru olacaktır.
+                            </li>
+                            <li>
+                                <i class="fas fa-info-circle text-info"></i>
+                                Eğer resim seçmezseniz, varsayılan olarak bu ekranda görülen görsel yüklenecektir.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section StylesSection {
+        <!-- summernote -->
+        <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.min.css">
+}
+
+@section ScriptsSection {
+        <!-- Summernote -->
+        <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
+        <script>
+            document.getElementById("Image").addEventListener('change', function (e) {
+                var file = e.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('image-preview').src = e.target.result;
+                    }
+                }
+                reader.readAsDataURL(file);
+            });
+
+            $(function () {
+                // Summernote
+                $('#summernote').summernote()
+            })
+
+        </script>
+}

@@ -1,0 +1,117 @@
+@using EShop.MVC.Helpers
+@model CartModel
+@{
+    ViewData["Title"] = "Sepetim";
+}
+
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Sepetim</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Ana Sayfa<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Sepetim</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        @if (Model.CartItems.Any())
+        {
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Ürün</th>
+                                <th scope="col">Fiyat</th>
+                                <th scope="col">Adet</th>
+                                <th scope="col">Toplam</th>
+                                <th scope="col">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img src="@Url.ApiContent(item.Product.ImageUrl)" alt="@item.Product.Name"
+                                                    style="width: 100px; height: 100px; object-fit: cover;">
+                                            </div>
+                                            <div class="media-body">
+                                                <p>@item.Product.Name</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>@item.Product.Price.ToString("C2")</h5>
+                                    </td>
+                                    <td>
+                                        <div class="product_count">
+                                            <form asp-area="" asp-controller="Cart" asp-action="UpdateQuantity" method="post"
+                                                class="d-inline">
+                                                <input type="hidden" name="cartItemId" value="@item.Id" />
+                                                <input type="number" name="quantity" value="@item.Quantity" min="1" max="100"
+                                                    class="input-text qty" onchange="this.form.submit()">
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>@item.TotalPrice.ToString("C2")</h5>
+                                    </td>
+                                    <td>
+                                        <form asp-action="RemoveFromCart" method="post" class="d-inline">
+                                            <input type="hidden" name="cartItemId" value="@item.Id" />
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <h5>Toplam</h5>
+                                </td>
+                                <td>
+                                    <h5>@Model.TotalAmount.ToString("C2")</h5>
+                                </td>
+                                <td>
+                                    <form asp-action="ClearCart" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-warning btn-sm">
+                                            Sepeti Temizle
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a asp-area="" asp-controller="Order" asp-action="Checkout" class="primary-btn">Siparişi Tamamla</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-center my-5">
+                <h3>Sepetinizde ürün bulunmamaktadır.</h3>
+                <a asp-area="" asp-controller="Product" asp-action="Index" class="primary-btn mt-3">Alışverişe Başla</a>
+            </div>
+        }
+    </div>
+</section>
+<!--================End Cart Area =================-->

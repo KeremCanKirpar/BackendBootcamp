@@ -1,0 +1,68 @@
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "_AuthLayout";
+}
+
+<div class="login-box">
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <a href="/" class="h1"><b>E</b>Shop</a>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Oturum açmak için giriş yapın</p>
+            <form asp-action="Login" method="post">
+                <input type="hidden" name="ReturnUrl" value="@Context.Request.Query["ReturnUrl"]" />
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input asp-for="UserNameOrEmail" class="form-control" placeholder="Kullanıcı Adı">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input asp-for="Password" class="form-control" placeholder="Şifre">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input asp-for="RememberMe" type="checkbox" id="remember">
+                            <label for="remember">
+                                Beni Hatırla
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                    </div>
+                </div>
+            </form>
+
+            <p class="mb-1">
+                <a asp-action="ForgotPassword">Şifremi Unuttum</a>
+            </p>
+            <p class="mb-0">
+                <a asp-action="Register" class="text-center">Yeni Üyelik Oluştur</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

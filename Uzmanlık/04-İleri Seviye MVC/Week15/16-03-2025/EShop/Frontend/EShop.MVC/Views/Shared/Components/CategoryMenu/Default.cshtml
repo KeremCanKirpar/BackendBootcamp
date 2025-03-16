@@ -1,0 +1,7 @@
+﻿@model List<CategoryMenuItem>
+
+@foreach (var c in Model)
+{
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index"
+            asp-route-categoryid="@c.Id">@c.Title</a></li>
+}

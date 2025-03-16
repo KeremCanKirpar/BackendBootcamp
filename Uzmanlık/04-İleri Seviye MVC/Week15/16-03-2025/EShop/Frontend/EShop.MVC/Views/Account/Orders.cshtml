@@ -1,0 +1,233 @@
+@model List<OrderModel>
+@{
+    ViewData["Title"] = "Siparişlerim";
+}
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Siparişlerim</h1>
+                <nav class="d-flex align-items-center">
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section_gap">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Siparişlerim</h5>
+                        <div class="btn-group">
+                            <a asp-action="Orders" class="btn @(Context.Request.Query["orderStatus"].Count == 0 ? "btn-primary" : "btn-outline-primary")">Tümü</a>
+                            <a asp-action="Orders" asp-route-orderStatus="0" class="btn @(Context.Request.Query["orderStatus"] == "0" ? "btn-primary" : "btn-outline-primary")">Bekleyen</a>
+                            <a asp-action="Orders" asp-route-orderStatus="1" class="btn @(Context.Request.Query["orderStatus"] == "1" ? "btn-primary" : "btn-outline-primary")">Hazırlanıyor</a>
+                            <a asp-action="Orders" asp-route-orderStatus="2" class="btn @(Context.Request.Query["orderStatus"] == "2" ? "btn-primary" : "btn-outline-primary")">Kargoda</a>
+                            <a asp-action="Orders" asp-route-orderStatus="3" class="btn @(Context.Request.Query["orderStatus"] == "3" ? "btn-primary" : "btn-outline-primary")">Teslim Edildi</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if (Model == null || !Model.Any())
+                        {
+                            <div class="text-center py-5">
+                                <div class="empty-orders-container">
+                                    <i class="fa fa-shopping-bag fa-4x text-muted mb-4"></i>
+                                    <h4 class="mb-3">Henüz Hiç Siparişiniz Bulunmuyor</h4>
+                                    <p class="text-muted mb-4">
+                                        @if (Context.Request.Query["orderStatus"].Count > 0)
+                                        {
+                                            <span>Bu durumda hiç siparişiniz bulunmuyor. </span>
+                                        }
+                                        Yeni ürünleri keşfetmek ve alışverişe başlamak için hemen ürünlerimizi inceleyin.
+                                    </p>
+                                    <a href="/Products" class="btn btn-primary">
+                                        <i class="fa fa-shopping-cart me-2"></i>Alışverişe Başla
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Sipariş No</th>
+                                            <th>Tarih</th>
+                                            <th>Durum</th>
+                                            <th>Toplam Tutar</th>
+                                            <th>Detaylar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var order in Model)
+                                        {
+                                            <tr>
+                                                <td>#@order.Id</td>
+                                                <td>@order.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                                                <td>
+                                                    <span class="badge @(order.OrderStatus switch {
+                                                        OrderStatus.Pending => "bg-warning",
+                                                        OrderStatus.Proccessing => "bg-info",
+                                                        OrderStatus.Shipped => "bg-primary",
+                                                        OrderStatus.Delivered => "bg-success",
+                                                        _ => "bg-secondary"
+                                                    })">
+                                                        @(order.OrderStatus switch {
+                                                            OrderStatus.Pending => "Beklemede",
+                                                            OrderStatus.Proccessing => "Hazırlanıyor",
+                                                            OrderStatus.Shipped => "Kargoda",
+                                                            OrderStatus.Delivered => "Teslim Edildi",
+                                                            _ => "Bilinmiyor"
+                                                        })
+                                                    </span>
+                                                </td>
+                                                <td>@order.TotalAmount.ToString("C2")</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#order-@order.Id">
+                                                        <i class="fa fa-eye"></i> Detay
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" class="p-0">
+                                                    <div class="collapse" id="order-@order.Id">
+                                                        <div class="card card-body m-2">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <h6 class="mb-3">Teslimat Adresi</h6>
+                                                                    <p class="mb-0">@order.ApplicationUser?.FirstName @order.ApplicationUser?.LastName</p>
+                                                                    <p class="mb-0">@order.Address</p>
+                                                                    <p class="mb-0">@order.City</p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <h6 class="mb-3">Sipariş Detayı</h6>
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-sm">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Ürün</th>
+                                                                                    <th>Adet</th>
+                                                                                    <th>Fiyat</th>
+                                                                                    <th>Toplam</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach (var item in order.OrderItems ?? new List<OrderItemModel>())
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>@item.ProductName</td>
+                                                                                        <td>@item.Quantity</td>
+                                                                                        <td>@item.UnitPrice.ToString("C2")</td>
+                                                                                        <td>@((item.UnitPrice * item.Quantity).ToString("C2"))</td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <td colspan="3" class="text-end"><strong>Toplam:</strong></td>
+                                                                                    <td><strong>@order.TotalAmount.ToString("C2")</strong></td>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section StylesSection {
+    <style>
+        .btn-group .btn {
+            border-radius: 0;
+        }
+        .btn-group .btn:first-child {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .btn-group .btn:last-child {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .table > :not(caption) > * > * {
+            padding: 1rem;
+        }
+        .badge {
+            padding: 0.5em 1em;
+        }
+        .empty-orders-container {
+            padding: 3rem 2rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .empty-orders-container i {
+            color: #6c757d;
+        }
+        .empty-orders-container .btn {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Tasarım İyileştirmeleri */
+        @@media (max-width: 768px) {
+            .card-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-group {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            
+            .btn-group .btn {
+                flex: 1 1 auto;
+                white-space: nowrap;
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .table-responsive {
+                margin: 0 -1rem;
+            }
+
+            .table > :not(caption) > * > * {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .table td:first-child {
+                white-space: nowrap;
+            }
+
+            .badge {
+                padding: 0.4em 0.6em;
+                font-size: 0.8rem;
+            }
+
+            .btn-sm {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+}
+

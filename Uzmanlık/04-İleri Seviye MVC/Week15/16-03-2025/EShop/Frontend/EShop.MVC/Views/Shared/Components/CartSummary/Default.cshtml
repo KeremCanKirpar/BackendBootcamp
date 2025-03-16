@@ -1,0 +1,23 @@
+@model int
+
+<style>
+    .cart .badge {
+        top: -20px;
+        right: -15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+</style>
+
+<a href="/Cart" class="cart position-relative inline-block">
+    <span class="ti-bag"></span>
+    @if (Model > 0)
+    {
+        <span class="badge badge-primary text-white position-absolute">@Model</span>
+        <span class="sr-only">Sepetteki Ürün Sayısı</span>
+    }
+</a>

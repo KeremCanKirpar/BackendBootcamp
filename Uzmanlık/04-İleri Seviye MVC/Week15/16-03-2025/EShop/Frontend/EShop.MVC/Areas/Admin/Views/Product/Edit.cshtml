@@ -1,0 +1,186 @@
+@model ProductUpdateModel
+
+@{
+    ViewData["Title"] = "Ürün Güncelle";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Ürün Güncelle</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Panel</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Product">Ürünler</a></li>
+                    <li class="breadcrumb-item active">Yeni Ürün</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Ürün Bilgileri</h3>
+                    </div>
+                    <form asp-area="Admin" asp-controller="Product" asp-action="Edit" method="post"
+                        enctype="multipart/form-data">
+                        <input type="hidden" name="CurrentImageUrl" value="@ViewBag.CurrentImageUrl" />
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Name">Ürün Adı</label>
+                                        <input asp-for="Name" class="form-control" placeholder="Ürün adını giriniz" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Price">Fiyat</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">₺</span>
+                                            </div>
+                                            <input asp-for="Price" type="number" step="0.01" min="0.01"
+                                                class="form-control" placeholder="0.00" />
+                                        </div>
+                                        <span asp-validation-for="Price" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for=Properties>Özellikler</label>
+                                <textarea asp-for=Properties id="summernote">
+
+                                </textarea>
+                                <span asp-validation-for="Properties" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Kategoriler</label>
+                                <div class="select2-purple">
+                                    <select class="select" multiple="multiple" data-placeholder="Kategori seç"
+                                        data-dropdown-css-class="select2-purple" style="width: 100%;" name="CategoryIds"
+                                        asp-items="@ViewBag.Categories">
+
+                                    </select>
+                                </div>
+                                <span asp-validation-for="CategoryIds" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Image">Ürün Görseli</label>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="custom-file">
+                                            <input type="file" asp-for="Image" class="custom-file-input" id="Image"
+                                                accept="image/*">
+                                            <label class="custom-file-label" for="Image">Görsel seçin...</label>
+                                        </div>
+                                        <span asp-validation-for="Image" class="text-danger"></span>
+                                        <small class="form-text text-muted">İzin verilen formatlar: .jpg, .jpeg, .png,
+                                            .bmp,
+                                            .gif</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="image-preview text-center">
+                                            <img id="image-preview"
+                                                src="@(string.IsNullOrEmpty(ViewBag.CurrentImageUrl) ? "/images/no-image.png": $"http://localhost:5210/{ViewBag.CurrentImageUrl}")"
+                                                class="img-fluid" style="max-height: 150px; object-fit:contain;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" asp-for=IsHome class="custom-control-input">
+                                    <label class="custom-control-label" asp-for=IsHome>Anasayfa Ürünü mü?</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Kaydet
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Listeye Dön
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Yardım & İpuçları</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-info-circle text-info"></i> Ürün adı benzersiz olmalıdır.</li>
+                            <li><i class="fas fa-info-circle text-info"></i> Fiyat alanına sadece rakam girilmelidir.
+                            </li>
+                            <li><i class="fas fa-info-circle text-info"></i> En az bir kategori seçilmelidir.</li>
+                            <li><i class="fas fa-info-circle text-info"></i> Ürün görseli yüklemek zorunlu değildir.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section StylesSection {
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/admin/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.min.css">
+}
+
+@section ScriptsSection {
+    <!-- Summernote -->
+    <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/admin/plugins/select2/js/select2.full.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="~/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+    <script>
+        document.getElementById('Image').addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        $(function () {
+            // Summernote
+            $('#summernote').summernote()
+        })
+
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select').select2({
+                theme: 'bootstrap4'
+            })
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
